@@ -3,7 +3,17 @@
     window.priceTipEnabled = true;
     console.log(host)
     if(host === 'www.harristeeter.com'){
-        addPriceTipListener('kds-Price kds-Price--alternate',addListPriceTipS,1000);
+        try{
+            addPriceTipListener('kds-Price kds-Price--alternate',addListPriceTipS,1000);
+        }catch(e){
+            console.log(e);
+        }
+        
+        try{
+            addPriceTipListener('kds-Price kds-Price--alternate',addPriceTip,1000);
+        }catch(e){
+            console.log(e);
+        }
     }
 })();
 
@@ -27,8 +37,6 @@ function addPriceTipListener(tag, func, time) {
         setInterval(eachCallFunc, time);
     }
 }
-
-
 function addListPriceTipS(){
     console.log('addListPriceTips is called');
     if (!window.priceTipEnabled) return;
@@ -40,6 +48,15 @@ function addListPriceTipS(){
         addTipsHelper(totalPrice[i].value,totalVolumn[i].textContent,i);
     }
 }
+function addPriceTip(){
+    console.log('addListPriceTips is called');
+    if (!window.priceTipEnabled) return;
+    var totalPrice = document.getElementsByClassName('kds-Price kds-Price--alternate mb-8');
+    console.log(totalPrice);
+    var totalVolumn = document.getElementsByClassName('kds-Text--l mr-8 text-primary ProductDetails-sellBy');
+    console.log(totalVolumn);
+    addTipsHelper(totalPrice[0].value,totalVolumn[0].textContent,0);
+}
 function addTipsHelper(totalPrice, totalVolumn,index){
     var testResult = getUnit(totalPrice, totalVolumn);
     console.log('testResult: '+testResult);
@@ -50,7 +67,8 @@ function addTipsHelper(totalPrice, totalVolumn,index){
     //left border/margin fails to work
     priceSpan.style = "font-size: 16px; left-margin: 20px";
 
-    document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--plain kds-Price-promotional--decorated')[index].appendChild(priceSpan);
+    document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[index].appendChild(priceSpan);
+    
 }
 function getUnit(totalPrice, totalVolumn){
     //quantity cannot solve 1/2, or 0.5 yet
