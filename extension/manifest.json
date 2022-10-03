@@ -1,0 +1,15 @@
+{
+    "name" : "harristeeter_extension",
+    "version" : "1.0",
+    "manifest_version" : 2,
+    "icons":
+    {
+    "16": "img/logo.png",
+    "48": "img/logo.png",
+    "128": "img/logo.png"
+    },
+    "content_scripts" : [{
+        "matches" : ["<all_urls>"],
+        "js":["jquery-3.6.1.js","content_script.js"]
+    }]
+}
