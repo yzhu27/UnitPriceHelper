@@ -71,7 +71,8 @@ function addTipsHelper(totalPrice, totalVolumn,index){
     
 }
 function getUnit(totalPrice, totalVolumn){
-    //quantity cannot solve 1/2, or 0.5 yet
+    //quantity cannot solve 1/2 yet
+    //quantity can already solve 0.5 by yZhu
     var itemQuantity = totalVolumn.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
     console.log(itemQuantity);
     //optimize to solve special cases as '20 ct 0.85'
