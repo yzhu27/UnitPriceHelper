@@ -8,9 +8,11 @@ console.log(totalVolumn);
 //if the UNIT PRICE is give, the string should start with '$', in the form of  '$[number]/[unit]'
 
 function getUnit(totalPrice, totalVolumn){
-    //quantity cannot solve 1/2, or 0.5 yet
+    //quantity cannot solve 1/2 yet
+    //quantity can already solve 0.5 by yZhu
     var itemQuantity = totalVolumn.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
     console.log(itemQuantity);
+    
     //optimize to solve special cases as '20 ct 0.85'
     var itemUnit = totalVolumn.match(/\s((([a-zA-Z]*\s?[a-zA-Z]+)*))/)[1];
     console.log(itemUnit);
