@@ -1,34 +1,34 @@
 //some key part of the JavaScript file
 var totalPrice = document.getElementsByClassName('kds-Price kds-Price--alternate mb-8')[0].value;
-
+console.log(totalPrice);
 var totalVolumn = document.getElementsByClassName('kds-Text--l mr-8 text-primary ProductDetails-sellBy')[0].textContent;
-
+console.log(totalVolumn);
 //notice that there is possibility that UNIT PRICE is already given
 //but here we just focus on those which are not yet provided
 //if the UNIT PRICE is give, the string should start with '$', in the form of  '$[number]/[unit]'
 
 function getUnit(totalPrice, totalVolumn){
     //quantity cannot solve 1/2, or 0.5 yet
-    var itemQuantity = totalVolumn.match(/(\d*)\s/)[1];
-
+    var itemQuantity = totalVolumn.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
+    console.log(itemQuantity);
     //optimize to solve special cases as '20 ct 0.85'
     var itemUnit = totalVolumn.match(/\s((([a-zA-Z]*\s?[a-zA-Z]+)*))/)[1];
-
+    console.log(itemUnit);
     var itemPriceByUnit = parseFloat(totalPrice) / parseFloat(itemQuantity);
     //cut long tails after digit
     itemPriceByUnit = itemPriceByUnit.toFixed(3);
-    
+    console.log(itemPriceByUnit);
     var itemFinalUnit = '';
     switch(itemUnit){
-        case 'gal': itemFinalUnit = 'Gallon';
+        case 'gal': itemFinalUnit = 'gal';
         break;
-        case 'oz': itemFinalUnit = 'Ounce';
+        case 'oz': itemFinalUnit = 'oz';
         break;
-        case 'fl oz': itemFinalUnit = 'Ounce';
+        case 'fl oz': itemFinalUnit = 'oz';
         break;
-        case 'ct': itemFinalUnit = 'per item';
+        case 'ct': itemFinalUnit = 'item';
         break;
-        case 'lb': itemFinalUnit = 'Pound';
+        case 'lb': itemFinalUnit = 'lb';
         break;
         case 'bag': itemFinalUnit = 'Bag';
         break;
