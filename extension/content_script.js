@@ -42,7 +42,6 @@ function addPriceTipListener(tag, func, time) {
 function addListPriceTipS(){
     console.log('addListPriceTips is called');
     if (!window.priceTipEnabled) return;
-    document.getElementsByName()
     var totalPrice = document.getElementsByClassName('kds-Price kds-Price--alternate');
     console.log(totalPrice);
     var totalVolumn = document.getElementsByClassName('kds-Text--s text-neutral-more-prominent');
@@ -93,7 +92,7 @@ function addTipsHelper(totalPrice, totalVolumn,index){
 }
 function addTipsHelperForCostco(unitPrice,unit,index){
     console.log('unit price:'+unitPrice,'unit: '+unit)
-    var priceSpan = "  ["+unitPrice+" / "+unit+"]";
+    var priceSpan = "["+unitPrice+" / "+unit+"]";
     document.getElementsByClassName('price')[index].append(priceSpan);
 }
 
