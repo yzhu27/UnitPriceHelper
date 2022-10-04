@@ -14,6 +14,8 @@
         }catch(e){
             console.log(e);
         }
+    }else if(host ==='www.costco.com'){
+        addPriceTipListener();
     }
 })();
 
@@ -117,4 +119,62 @@ function getUnit(totalPrice, totalVolumn){
         };
     }
 }
+function matchProduct(title, price){
 
+    var regQuant = "ct|pack|count";
+    var regWeigh = "g|kg|ml|l|fl oz|oz|qt";
+    var regFloat = "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?";
+
+    var reg1 = new RegExp('([a-zA-Z\\s]*),?\\s*('+regFloat+')\\s*('+regWeigh+')(?:\\s*\\/*,?\\s*)(\\d*)-?((?:\\s*('+regQuant+')\\s*)*)?')
+    
+    var pos1 = {i: 3, pCap: 2, pUnit: 3, pCount: 4}
+    var reg = reg1;
+    var pos = pos1;
+    var match = null;
+    var cap = 0, count = 0, lastMul = 1;
+    var un = '', tip = '';
+    var productName = null;
+    reg.lastIndex = 0;
+    match = reg.exec(title);
+    console.log(match);
+    
+    var capacity;
+    var caps = match[pos.pCap].split('-');
+    productName = match[1];
+    var count = match[3];
+    if (caps.length == 2) {
+        capacity = (parseFloat(caps[0].trim()) + parseFloat(caps[1].trim()))/2;
+    } else {
+        capacity = parseFloat(match[pos.pCap].trim());
+    }
+
+    if (match.length > 3 && match[pos.pCount]) {
+        var multiple = match[pos.pCount].match(/\d+/g);
+        if (multiple) for (var i=0; i<multiple.length; ++i) {
+            lastMul = parseInt(multiple[i]);
+            capacity *= lastMul;
+        }
+    }
+    
+    var unit = match[pos.pUnit].toLowerCase();
+
+    if (unit === 'g') {
+        capacity /= 1000;
+        unit = 'kg';
+    }else if (unit === 'ml') {
+        capacity /= 1000;
+        unit = 'L';
+    } else if (unit === 'l') {
+        unit = 'L';
+    }
+    
+    
+    var unitPrice = parseFloat(price) / capacity;
+    return {
+        productName: productName,
+        capacity: Math.round(capacity * 10000) / 10000,
+        unit: unit,
+        price: Math.round(unitPrice * 100) / 100,
+    };
+ 
+}
