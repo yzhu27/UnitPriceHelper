@@ -1,4 +1,4 @@
-<p align="center"><img width="300" src="./images/UPRlogo_noword.png"></p>
+<p align="center"><img width="300" src="./images/logo.png"></p>
 
 # UnitPriceHelper
 
