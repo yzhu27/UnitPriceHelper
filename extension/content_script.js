@@ -60,11 +60,14 @@ function addListPriceTipForCostco(){
     for(let i=0;i<totalPrices.length;i++){
         var price = totalPrices[i].textContent;
         console.log('price: '+price+'type: '+typeof(price));
-        var convertPrice = parseFloat(price.substring(1));
-        // convertPrice is Nan?
-        console.log('p: '+ convertPrice);
-        var product = matchProduct(productInfos[i].textContent,20);
-       addTipsHelperForCostco(product.price,product.unit);
+        var convertPrice = parseFloat(price.trim().substring(1));
+        //why convertPrice is Nan?
+        console.log('after convert: '+ convertPrice);
+        var product = matchProduct(productInfos[i].textContent,price);
+        if(product==null){
+            continue;
+        }
+       addTipsHelperForCostco(product.price,product.unit,i);
     }
 }
 function addPriceTip(){
@@ -90,12 +93,8 @@ function addTipsHelper(totalPrice, totalVolumn,index){
 }
 function addTipsHelperForCostco(unitPrice,unit,index){
     console.log('unit price:'+unitPrice,'unit: '+unit)
-    var priceSpan = document.createElement('span');
-    priceSpan.innerHTML = "["+unitPrice+" / "+unit+"]";
-    priceSpan.className = 'kds-Price-promotional-dropCaps';
-    //left border/margin fails to work
-    priceSpan.style = "font-size: 16px; left-margin: 20px";
-    document.getElementsByClassName('price')[index].appendChild(priceSpan);
+    var priceSpan = "  ["+unitPrice+" / "+unit+"]";
+    document.getElementsByClassName('price')[index].append(priceSpan);
 }
 
 //from unitPrice.js
@@ -160,13 +159,15 @@ function getUnit(totalPrice, totalVolumn){
     }
 }
 function matchProduct(title, price){
+    title = title.trim().toLowerCase();
+   
     console.log('title: '+title);
+    price = parseFloat(price.trim().substring(1));
     var regQuant = "ct|pack|count";
-    var regWeigh = "g|kg|ml|l|fl oz|oz|qt";
+    var regWeigh = "g|kg|lb|fl oz|oz|qt|lbs|fl. oz";
     var regFloat = "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?";
 
-    var reg1 = new RegExp('([a-zA-Z\\s]*),?\\s*('+regFloat+')\\s*('+regWeigh+')(?:\\s*\\/*,?\\s*)(\\d*)-?((?:\\s*('+regQuant+')\\s*)*)?')
-    
+    var reg1 = new RegExp('([a-zA-Z\\s]*),?\\s*('+regFloat+')\\s*('+regWeigh+')(?:\\s*\\/*,?\\s*)(\\d*)-?((?:\\s*('+regQuant+')\\s*)*)?') 
     var pos1 = {i: 3, pCap: 2, pUnit: 3, pCount: 4}
     var reg = reg1;
     var pos = pos1;
@@ -177,7 +178,10 @@ function matchProduct(title, price){
     reg.lastIndex = 0;
     match = reg.exec(title);
     console.log(match);
-    
+    //No count and capacity: no need to convert
+    if(match==null||match.length==1){
+        return null;
+    }
     var capacity;
     var caps = match[pos.pCap].split('-');
     productName = match[1];
