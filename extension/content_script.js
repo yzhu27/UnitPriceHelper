@@ -15,7 +15,7 @@
             console.log(e);
         }
     }else if(host ==='www.costco.com'){
-        addPriceTipListener();
+        addPriceTipListener('',addListPriceTipForCostco,1000);
     }
 })();
 
@@ -42,12 +42,28 @@ function addPriceTipListener(tag, func, time) {
 function addListPriceTipS(){
     console.log('addListPriceTips is called');
     if (!window.priceTipEnabled) return;
+    document.getElementsByName()
     var totalPrice = document.getElementsByClassName('kds-Price kds-Price--alternate');
     console.log(totalPrice);
     var totalVolumn = document.getElementsByClassName('kds-Text--s text-neutral-more-prominent');
     console.log(totalVolumn);
     for(let i =0;i<totalPrice.length;i++){
         addTipsHelper(totalPrice[i].value,totalVolumn[i].textContent,i);
+    }
+}
+function addListPriceTipForCostco(){
+    console.log('addListPriceTipsForCostco is called');
+    var totalPrices = document.getElementsByClassName('price');
+    console.log(totalPrices);
+    var productInfos = document.getElementsByClassName('description');
+    console.log(productInfos);
+    for(let i=0;i<totalPrices.length;i++){
+        var price = totalPrices[i].textContent;
+        console.log('price: '+price+'type: '+typeof(price));
+        var convertPrice = parseFloat(price.substring(1));
+        console.log('p: '+ convertPrice);
+        var product = matchProduct(productInfos[i].textContent,20);
+       addTipsHelperForCostco(product.price,product.unit);
     }
 }
 function addPriceTip(){
@@ -68,9 +84,17 @@ function addTipsHelper(totalPrice, totalVolumn,index){
     priceSpan.className = 'kds-Price-promotional-dropCaps';
     //left border/margin fails to work
     priceSpan.style = "font-size: 16px; left-margin: 20px";
-
     document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[index].appendChild(priceSpan);
-    
+
+}
+function addTipsHelperForCostco(unitPrice,unit,index){
+    console.log('unit price:'+unitPrice,'unit: '+unit)
+    var priceSpan = document.createElement('span');
+    priceSpan.innerHTML = "["+unitPrice+" / "+unit+"]";
+    priceSpan.className = 'kds-Price-promotional-dropCaps';
+    //left border/margin fails to work
+    priceSpan.style = "font-size: 16px; left-margin: 20px";
+    document.getElementsByClassName('price')[index].appendChild(priceSpan);
 }
 function getUnit(totalPrice, totalVolumn){
     //quantity cannot solve 1/2, or 0.5 yet
@@ -120,7 +144,7 @@ function getUnit(totalPrice, totalVolumn){
     }
 }
 function matchProduct(title, price){
-
+    console.log('title: '+title);
     var regQuant = "ct|pack|count";
     var regWeigh = "g|kg|ml|l|fl oz|oz|qt";
     var regFloat = "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?";
@@ -167,7 +191,6 @@ function matchProduct(title, price){
     } else if (unit === 'l') {
         unit = 'L';
     }
-    
     
     var unitPrice = parseFloat(price) / capacity;
     return {
