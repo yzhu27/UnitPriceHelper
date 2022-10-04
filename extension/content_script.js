@@ -14,11 +14,13 @@
         }catch(e){
             console.log(e);
         }
+    }else if(host ==='www.costco.com'){
+        addPriceTipListener('',addListPriceTipForCostco,1000);
     }
 })();
 
 function addPriceTipListener(tag, func, time) {
-    console.log(func.call());
+    //console.log(func.call());
     var onModifiedFunc = function() {
         $(this).unbind("DOMSubtreeModified");
         func.call(this);
@@ -46,6 +48,25 @@ function addListPriceTipS(){
     console.log(totalVolumn);
     for(let i =0;i<totalPrice.length;i++){
         addTipsHelper(totalPrice[i].value,totalVolumn[i].textContent,i);
+    }
+}
+function addListPriceTipForCostco(){
+    console.log('addListPriceTipsForCostco is called');
+    var totalPrices = document.getElementsByClassName('price');
+    console.log(totalPrices);
+    var productInfos = document.getElementsByClassName('description');
+    console.log(productInfos);
+    for(let i=0;i<totalPrices.length;i++){
+        var price = totalPrices[i].textContent;
+        console.log('price: '+price+'type: '+typeof(price));
+        var convertPrice = parseFloat(price.trim().substring(1));
+        //why convertPrice is Nan?
+        console.log('after convert: '+ convertPrice);
+        var product = matchProduct(productInfos[i].textContent,price);
+        if(product==null){
+            continue;
+        }
+        addTipsHelperForCostco(product.price,product.unit,i);
     }
 }
 function addPriceTip(){
@@ -105,6 +126,13 @@ function addTipsHelper(totalPrice, totalVolumn,index){
     
 }
 
+function addTipsHelperForCostco(unitPrice,unit,index){
+    console.log('unit price:'+unitPrice,'unit: '+unit)
+    var priceSpan = "  ["+unitPrice+" / "+unit+"]";
+    document.getElementsByClassName('price')[index].append(priceSpan);
+}
+
+
 //from unitPrice.js
 function getUnit(totalPrice, totalVolumn){
     //solve if the price/unit is already provided by the website
@@ -149,6 +177,10 @@ function getUnit(totalPrice, totalVolumn){
             break;
             case 'pk': itemFinalUnit = 'Pack';
             break;
+            case 'cans': itemFinalUnit = 'can';
+            break;
+            case 'L': itemFinalUnit = 'L';
+            break;
             //may be some other units else?
 
             default: itemFinalUnit = 'unknown unit';
@@ -165,4 +197,68 @@ function getUnit(totalPrice, totalVolumn){
             };
         }
     }
+}
+
+function matchProduct(title, price){
+    title = title.trim().toLowerCase();
+
+    console.log('title: '+title);
+    price = parseFloat(price.trim().substring(1));
+    var regQuant = "ct|pack|count";
+    var regWeigh = "g|kg|lb|fl oz|oz|qt|lbs|fl. oz";
+    var regFloat = "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?";
+
+    var reg1 = new RegExp('([a-zA-Z\\s]*),?\\s*('+regFloat+')\\s*('+regWeigh+')(?:\\s*\\/*,?\\s*)(\\d*)-?((?:\\s*('+regQuant+')\\s*)*)?') 
+    var pos1 = {i: 3, pCap: 2, pUnit: 3, pCount: 4}
+    var reg = reg1;
+    var pos = pos1;
+    var match = null;
+    var cap = 0, count = 0, lastMul = 1;
+    var un = '', tip = '';
+    var productName = null;
+    reg.lastIndex = 0;
+    match = reg.exec(title);
+    console.log(match);
+    //No count and capacity: no need to convert
+    if(match==null||match.length==1){
+        return null;
+    }
+    var capacity;
+    var caps = match[pos.pCap].split('-');
+    productName = match[1];
+    var count = match[3];
+    if (caps.length == 2) {
+        capacity = (parseFloat(caps[0].trim()) + parseFloat(caps[1].trim()))/2;
+    } else {
+        capacity = parseFloat(match[pos.pCap].trim());
+    }
+
+    if (match.length > 3 && match[pos.pCount]) {
+        var multiple = match[pos.pCount].match(/\d+/g);
+        if (multiple) for (var i=0; i<multiple.length; ++i) {
+            lastMul = parseInt(multiple[i]);
+            capacity *= lastMul;
+        }
+    }
+    
+    var unit = match[pos.pUnit].toLowerCase();
+
+    if (unit === 'g') {
+        capacity /= 1000;
+        unit = 'kg';
+    }else if (unit === 'ml') {
+        capacity /= 1000;
+        unit = 'L';
+    } else if (unit === 'l') {
+        unit = 'L';
+    }
+    
+    var unitPrice = parseFloat(price) / capacity;
+    return {
+        productName: productName,
+        capacity: Math.round(capacity * 10000) / 10000,
+        unit: unit,
+        price: Math.round(unitPrice * 100) / 100,
+    };
+
 }
