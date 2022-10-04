@@ -96,51 +96,66 @@ function addTipsHelperForCostco(unitPrice,unit,index){
     priceSpan.style = "font-size: 16px; left-margin: 20px";
     document.getElementsByClassName('price')[index].appendChild(priceSpan);
 }
+
+//from unitPrice.js
 function getUnit(totalPrice, totalVolumn){
-    //quantity cannot solve 1/2, or 0.5 yet
-    var itemQuantity = totalVolumn.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
-    console.log(itemQuantity);
-    //optimize to solve special cases as '20 ct 0.85'
-    var itemUnit = totalVolumn.match(/\s((([a-zA-Z]*\s?[a-zA-Z]+)*))/)[1];
-    console.log(itemUnit);
-    var itemPriceByUnit = parseFloat(totalPrice) / parseFloat(itemQuantity);
-    //cut long tails after digit
-    itemPriceByUnit = itemPriceByUnit.toFixed(3);
-    console.log(itemPriceByUnit);
-    var itemFinalUnit = '';
-    switch(itemUnit){
-        case 'gal': itemFinalUnit = 'gal';
-        break;
-        case 'oz': itemFinalUnit = 'oz';
-        break;
-        case 'fl oz': itemFinalUnit = 'oz';
-        break;
-        case 'ct': itemFinalUnit = 'item';
-        break;
-        case 'lb': itemFinalUnit = 'lb';
-        break;
-        case 'bag': itemFinalUnit = 'Bag';
-        break;
-        case 'pack': itemFinalUnit = 'Pack';
-        break;
-        case 'bottles': itemFinalUnit = 'Bottle';
-        break;
-        case 'pk': itemFinalUnit = 'Pack';
-        break;
-        //may be some other units else?
-
-        default: itemFinalUnit = 'unknown unit';
-    }
-
-    if(itemPriceByUnit > 1000 || itemPriceByUnit < 0){
-        return null;
-    } 
-    else {
-        console.log("Hihi");
+    //solve if the price/unit is already provided by the website
+    
+    if (totalVolumn[0] == '$'){
+        var itemFinalUnit = totalVolumn;
         return {
-            finalPrice: itemPriceByUnit,
-            finalUnit: itemFinalUnit
-        };
+            finalPrice: itemFinalUnit
+        }
+    }else{
+        //quantity cannot solve 1/2 yet
+        //quantity can already solve 0.5 by yZhu
+        var itemQuantity = totalVolumn.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
+        console.log(itemQuantity);
+        
+        //optimize to solve special cases as '20 ct 0.85'
+        var itemUnit = totalVolumn.match(/\s((([a-zA-Z]*\s?[a-zA-Z]+)*))/)[1];
+        console.log(itemUnit);
+        var itemPriceByUnit = parseFloat(totalPrice) / parseFloat(itemQuantity);
+        //cut long tails after digit
+        itemPriceByUnit = itemPriceByUnit.toFixed(3);
+        console.log(itemPriceByUnit);
+
+        var itemFinalUnit = '';
+        
+        switch(itemUnit){
+            case 'gal': itemFinalUnit = 'gal';
+            break;
+            case 'oz': itemFinalUnit = 'oz';
+            break;
+            case 'fl oz': itemFinalUnit = 'oz';
+            break;
+            case 'ct': itemFinalUnit = 'item';
+            break;
+            case 'lb': itemFinalUnit = 'lb';
+            break;
+            case 'bag': itemFinalUnit = 'Bag';
+            break;
+            case 'pack': itemFinalUnit = 'Pack';
+            break;
+            case 'bottles': itemFinalUnit = 'Bottle';
+            break;
+            case 'pk': itemFinalUnit = 'Pack';
+            break;
+            //may be some other units else?
+
+            default: itemFinalUnit = 'unknown unit';
+        }
+
+        if(itemPriceByUnit > 1000 || itemPriceByUnit < 0){
+            return null;
+        } 
+        else {
+            console.log("Hihi");
+            return {
+                finalPrice: itemPriceByUnit,
+                finalUnit: itemFinalUnit
+            };
+        }
     }
 }
 function matchProduct(title, price){
