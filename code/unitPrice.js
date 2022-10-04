@@ -78,7 +78,7 @@ var priceSpan = document.createElement('span');
 //otherwise, the length is 2 - finalPrice and finalUnit
 if(Object.keys(testResult).length == 2){
     priceSpan.innerHTML = "[$"+testResult.finalPrice+" / "+testResult.finalUnit+"]";
-    
+
     priceSpan.className = 'kds-Price-promotional-dropCaps';
     //left border/margin fails to work
     priceSpan.style = "font-size: 16px; left-margin: 20px";
@@ -89,9 +89,9 @@ if(Object.keys(testResult).length == 2){
     //if the item is not having discount, the length should be 83
     var insertedTag = document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[0];
     if(insertedTag.className.length == 54){
-        document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[0].appendChild(priceSpan);
+        insertedTag.appendChild(priceSpan);
     }else if(insertedTag.className.length == 83){
-        document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--plain kds-Price-promotional--decorated')[0].appendChild(priceSpan);
+        insertedTag.appendChild(priceSpan);
     }else{
         alert("ERROR: not tag to insert span");
     }
