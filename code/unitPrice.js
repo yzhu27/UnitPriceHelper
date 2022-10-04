@@ -8,6 +8,13 @@ console.log(totalVolumn);
 //if the UNIT PRICE is give, the string should start with '$', in the form of  '$[number]/[unit]'
 
 function getUnit(totalPrice, totalVolumn){
+    //solve if the price/unit is already provided by the website
+    var itemFinalUnit = '';
+    if (totalVolumn[0] == '$'){
+        itemFinalUnit = totalVolumn;
+    }else{
+    }
+    
     //quantity cannot solve 1/2 yet
     //quantity can already solve 0.5 by yZhu
     var itemQuantity = totalVolumn.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
@@ -20,7 +27,7 @@ function getUnit(totalPrice, totalVolumn){
     //cut long tails after digit
     itemPriceByUnit = itemPriceByUnit.toFixed(3);
     console.log(itemPriceByUnit);
-    var itemFinalUnit = '';
+    
     switch(itemUnit){
         case 'gal': itemFinalUnit = 'gal';
         break;
