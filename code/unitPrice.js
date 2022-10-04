@@ -7,6 +7,7 @@ console.log(totalVolumn);
 //but here we just focus on those which are not yet provided
 //if the UNIT PRICE is give, the string should start with '$', in the form of  '$[number]/[unit]'
 
+
 function getUnit(totalPrice, totalVolumn){
     //solve if the price/unit is already provided by the website
     
