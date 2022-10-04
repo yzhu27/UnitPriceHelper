@@ -42,6 +42,7 @@ function addPriceTipListener(tag, func, time) {
 function addListPriceTipS(){
     console.log('addListPriceTips is called');
     if (!window.priceTipEnabled) return;
+    document.getElementsByName()
     var totalPrice = document.getElementsByClassName('kds-Price kds-Price--alternate');
     console.log(totalPrice);
     var totalVolumn = document.getElementsByClassName('kds-Text--s text-neutral-more-prominent');
@@ -87,43 +88,13 @@ function addTipsHelper(totalPrice, totalVolumn,index){
     priceSpan.className = 'kds-Price-promotional-dropCaps';
     //left border/margin fails to work
     priceSpan.style = "font-size: 16px; left-margin: 20px";
+    document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[index].appendChild(priceSpan);
 
-    //following line is originally working
-    //document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[index].appendChild(priceSpan);
-
-    //following is trying to solve discount item issue, still require testing
-    //use the length of testResult to check whether the price/unit is already provided by the website
-    //if it is provided, the length should be 1 - only has finalPrice as the result
-    //otherwise, the length is 2 - finalPrice and finalUnit
-    if(Object.keys(testResult).length == 2){
-        priceSpan.innerHTML = "[$"+testResult.finalPrice+" / "+testResult.finalUnit+"]";
-
-        priceSpan.className = 'kds-Price-promotional-dropCaps';
-        //left border/margin fails to work
-        priceSpan.style = "font-size: 16px; left-margin: 20px";
-
-        //not elegant, but works
-        //use the length of class name to determine whether the item is having discount
-        //if the item is having discount, the length should be 54
-        //if the item is not having discount, the length should be 83
-        var insertedTag = document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[index];
-        if(insertedTag.className.length == 54){
-            insertedTag.appendChild(priceSpan);
-        }else if(insertedTag.className.length == 83){
-            insertedTag.appendChild(priceSpan);
-        }else{
-            alert("ERROR: not tag to insert span");
-        }
-
-
-        //try to change CSS, this need to use append(), but failed because is regarded as string
-        // var priceSpan = "<span class=\"kds-Price-promotional-dropCaps\">"+testResult.finalPrice+" / "+testResult.finalUnit+"</span>";
-        // document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--plain kds-Price-promotional--decorated')[0].append(priceSpan);
-
-    }else{
-        console.log("Price/unit is already provided.")
-    }
-    
+}
+function addTipsHelperForCostco(unitPrice,unit,index){
+    console.log('unit price:'+unitPrice,'unit: '+unit)
+    var priceSpan = "  ["+unitPrice+" / "+unit+"]";
+    document.getElementsByClassName('price')[index].append(priceSpan);
 }
 
 function addTipsHelperForCostco(unitPrice,unit,index){
@@ -198,7 +169,6 @@ function getUnit(totalPrice, totalVolumn){
         }
     }
 }
-
 function matchProduct(title, price){
     title = title.trim().toLowerCase();
 
@@ -260,5 +230,4 @@ function matchProduct(title, price){
         unit: unit,
         price: Math.round(unitPrice * 100) / 100,
     };
-
 }
