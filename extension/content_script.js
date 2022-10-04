@@ -61,6 +61,7 @@ function addListPriceTipForCostco(){
         var price = totalPrices[i].textContent;
         console.log('price: '+price+'type: '+typeof(price));
         var convertPrice = parseFloat(price.substring(1));
+        // convertPrice is Nan?
         console.log('p: '+ convertPrice);
         var product = matchProduct(productInfos[i].textContent,20);
        addTipsHelperForCostco(product.price,product.unit);
