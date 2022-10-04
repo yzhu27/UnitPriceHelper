@@ -1,5 +1,7 @@
 <p align="center"><img width="300" src="./images/UPRlogo_noword.png"></p>
+
 # UnitPriceHelper
+
 ![GitHub Contributor](https://img.shields.io/github/contributors/yzhu27/UnitPriceHelper)
 
 ## 
