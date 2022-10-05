@@ -53,6 +53,7 @@ const TARGET_URL_PREFIX =[
  */
 function addListPriceTips(url_prefix) {
     console.log('addListPriceTips_ is called:' + url_prefix);
+    // query didn't work for 'Target' website
     var totalPrice = document.querySelectorAll(RULE_SET[url_prefix].price_label);
     var totalVolumn = document.querySelectorAll(RULE_SET[url_prefix].capacity_label);
     console.log(RULE_SET[url_prefix].price_label);
@@ -267,6 +268,7 @@ function costcoConverter(price, title) {
     };
 
 }
+//unfinished
 function targetConverter(price, title) {
     console.log(price);
     console.log(title);
