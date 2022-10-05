@@ -128,7 +128,7 @@ function addTipsHelper(totalPrice, totalVolumn,index){
 
 function addTipsHelperForCostco(unitPrice,unit,index){
     console.log('unit price:'+unitPrice,'unit: '+unit)
-    var priceSpan = "  ["+unitPrice+" / "+unit+"]";
+    var priceSpan = "["+unitPrice+" / "+unit+"]";
     document.getElementsByClassName('price')[index].append(priceSpan);
 }
 
