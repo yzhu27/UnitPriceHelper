@@ -21,32 +21,41 @@ pricePart[0].appendChild(unitPrice);
 
 //Items Page: https://www.target.com/c/     https://www.target.com/s
 //code for search page
-var allItems = document.getElementsByClassName('styles__StyledRow-sc-wmoju4-0 kEpCtb')[3];
-//allItems.children[i]: i from 0-25, exclude 6 and 16
-for (let i=0; i<26; i++){
-    if (i == 6 || i == 16){
-        continue;
-    }
+function insert(i){
+    var allItems = document.getElementsByClassName('styles__StyledRow-sc-wmoju4-0 kEpCtb')[3];
+        //allItems.children[i]: i from 0-25, exclude 6 and 16
+        if (i == 6 || i == 16){
+            return
+        }
 
-    var curItem = allItems.children[i];
-    var unitPart = curItem.children[0].children[0].children[0].children[1].children[0].children[0].children[0].children[0].children[0];
-    var unitText = unitPart.innerText;
-    //var numUnit = unitText.match(/.*-\s(\d*\.*\d*[a-z]*\s*[a-z]*)\s*-*.*/)[1]; //'52 fl oz'
-    var numUnit = unitText.match(/\S*\s*-\s(\d.*)\s*-*.*/)[1];
-    var num = numUnit.match(/(\d*\.*\d*).*/)[1]; //'52'
-    var unit = numUnit.match(/\d*\.*\d*\s*([A-Za-z]*\s*[A-Za-z]*).*/)[1]; //'fl oz'
+        var curItem = allItems.children[i];
+        var unitPart = curItem.children[0].children[0].children[0].children[1].children[0].children[0].children[0].children[0].children[0];
+        var unitText = unitPart.innerText;
+        //var numUnit = unitText.match(/.*-\s(\d*\.*\d*[a-z]*\s*[a-z]*)\s*-*.*/)[1]; //'52 fl oz'
+        var numUnit = unitText.match(/\S*\s*-\s(\d.*)\s*-*.*/)[1];
+        var num = numUnit.match(/(\d*\.*\d*).*/)[1]; //'52'
+        var unit = numUnit.match(/\d*\.*\d*\s*([A-Za-z]*\s*[A-Za-z]*).*/)[1]; //'fl oz'
 
-    var pricePart = curItem.children[0].children[0].children[0].children[1].children[0].children[0].children[1].children[0].children[0];
-    var price = pricePart.innerText; //'$3.99'
-    var moneyUnit = price[0]; //"$"
+        var pricePart = curItem.children[0].children[0].children[0].children[1].children[0].children[0].children[1].children[0].children[0];
+        var price = pricePart.innerText; //'$3.99'
+        var moneyUnit = price[0]; //"$"
 
-    var res = parseFloat(price.slice(1,-1)) / parseFloat(num); //price.slice(1,-1) = '3.99'
-    var perPrice = res.toFixed(3); 
-    var unitPrice = document.createElement('span');
-    unitPrice.innerHTML = "(" + moneyUnit + perPrice + " / " + unit + ")";
-    unitPrice.style = "color:red";
-    pricePart.appendChild(unitPrice);
-    console.log(i);
-
+        var res = parseFloat(price.slice(1,-1)) / parseFloat(num); //price.slice(1,-1) = '3.99'
+        var perPrice = res.toFixed(3); 
+        var unitPrice = document.createElement('span');
+        unitPrice.innerHTML = "(" + moneyUnit + perPrice + " / " + unit + ")";
+        unitPrice.style = "color:red";
+        pricePart.appendChild(unitPrice);
+        console.log(i);
 }
+
+insert(0)
+insert(1)
+insert(2)
+insert(3)
+insert(4)
+insert(5)
+insert(7)
+insert(8)
+
 
