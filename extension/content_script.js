@@ -34,7 +34,7 @@ const RULE_SET = {
     'https://www.wholefoodsmarket.com/search' : {
         price_label: "span[class=regular_price]",
         capacity_label: "h2[data-testid=product-tile-name]",
-        function: targetConverter,
+        function: costcoConverter,
         label_type: 'text',
         append_function: appendForTarget,
         website_type: 'dynamic'
