@@ -4,35 +4,48 @@ const RULE_SET = {
         capacity_label: "span[id=ProductDetails-sellBy-unit]",
         function: harrisConverter,
         label_type: 'value',
-        append_function: appendForHarris
+        append_function: appendForHarris,
+        website_type: 'static'
     },
     'https://www.harristeeter.com/search': {
         price_label: "data",
         capacity_label: "span[class='kds-Text--s text-neutral-more-prominent']",
         function: harrisConverter,
         label_type: 'value',
-        append_function: appendForHarris
+        append_function: appendForHarris,
+        website_type: 'static'
     },
     'https://www.costco.com/': {
         price_label: 'div[class=price]',
         capacity_label: 'span[class=description]',
         function: costcoConverter,
         label_type: 'text',
-        append_function: appendForCostco
+        append_function: appendForCostco,
+        website_type: 'static'
     },
     'https://www.target.com/s' : {
         price_label: "span[data-test=current-price]",
         capacity_label: "div[class='Truncate-sc-10p6c43-0 dWgRjr']",
+        function: costcoConverter, // target could share the converter with costco.
+        label_type: 'text',
+        append_function: appendForTarget,
+        website_type: 'dynamic'
+    },
+    'https://www.wholefoodsmarket.com/search' : {
+        price_label: "span[class=regular_price]",
+        capacity_label: "h2[data-testid=product-tile-name]",
         function: targetConverter,
         label_type: 'text',
-        append_function: appendForTarget
+        append_function: appendForTarget,
+        website_type: 'dynamic'
     }
 };
 const TARGET_URL_PREFIX =[
     'https://www.harristeeter.com/p/',
     'https://www.harristeeter.com/search',
     'https://www.costco.com/',
-    'https://www.target.com/s'
+    'https://www.target.com/s',
+    'https://www.wholefoodsmarket.com/search'
 ];
 (function () {
     var host = window.location.host.toLowerCase();
@@ -41,10 +54,17 @@ const TARGET_URL_PREFIX =[
     var url = window.location.href.toLowerCase();
     for( let i=0; i < TARGET_URL_PREFIX.length ; i++ ){
         if(url.startsWith(TARGET_URL_PREFIX[i])){
-            addListPriceTips(TARGET_URL_PREFIX[i]);
+            if(RULE_SET[TARGET_URL_PREFIX[i]].website_type=='static'){
+                addListPriceTips(TARGET_URL_PREFIX[i])
+            }else if(RULE_SET[TARGET_URL_PREFIX[i]].website_type=='dynamic'){
+                window.addEventListener("wheel",event => {
+                    addListPriceTips(TARGET_URL_PREFIX[i])
+                })
+            }    
         }
     }
 })();
+
 /**
  * @property {Function}addListPriceTips Acts like an controller. Designated different converter 
  *                                      and append function for 'addTipsHelper()' according to 'url_prefix' 
@@ -52,28 +72,30 @@ const TARGET_URL_PREFIX =[
  * @returns no return value
  */
 function addListPriceTips(url_prefix) {
-    console.log('addListPriceTips_ is called:' + url_prefix);
-    // query didn't work for 'Target' website
-    var totalPrice = document.querySelectorAll(RULE_SET[url_prefix].price_label);
-    var totalVolumn = document.querySelectorAll(RULE_SET[url_prefix].capacity_label);
-    console.log(RULE_SET[url_prefix].price_label);
-    console.log('len: '+totalPrice.length);
-    console.log('price: ' + totalPrice[0].textContent);
-    console.log('volume: ', totalVolumn[0].textContent);
+        console.log('addListPriceTips_ is called:' + url_prefix);
+        // query didn't work for 'Target' website
+        // console.log(document);
+        var totalPrice = document.querySelectorAll(RULE_SET[url_prefix].price_label);
+        var totalVolumn = document.querySelectorAll(RULE_SET[url_prefix].capacity_label);
+        // console.log(RULE_SET[url_prefix].price_label);
+        // console.log('len: '+totalPrice.length);
+        // console.log('price: ' + totalPrice[0].textContent);
+        // console.log('volume: ', totalVolumn[0].textContent);
 
-    var labelType = RULE_SET[url_prefix].label_type;
-    var len = totalPrice.length;
-    
-    for (let i = 0; i < len; i++) {
-        if (totalPrice[i] === null || totalVolumn[i] === null) {
-            continue;
+        var labelType = RULE_SET[url_prefix].label_type;
+        var len = totalPrice.length;
+        
+        for (let i = 0; i < len; i++) {
+            if (totalPrice[i] === null || totalVolumn[i] === null) {
+                continue;
+            }
+            if (labelType === 'value') {
+                addTipsHelper(totalPrice[i].value, totalVolumn[i].textContent, RULE_SET[url_prefix].function, RULE_SET[url_prefix].append_function, i);
+            } else if (labelType === 'text') {
+                addTipsHelper(totalPrice[i].textContent, totalVolumn[i].textContent, RULE_SET[url_prefix].function, RULE_SET[url_prefix].append_function, i);
+            }
         }
-        if (labelType === 'value') {
-            addTipsHelper(totalPrice[i].value, totalVolumn[i].textContent, RULE_SET[url_prefix].function, RULE_SET[url_prefix].append_function, i);
-        } else if (labelType === 'text') {
-            addTipsHelper(totalPrice[i].textContent, totalVolumn[i].textContent, RULE_SET[url_prefix].function, RULE_SET[url_prefix].append_function, i);
-        }
-    }
+        return len;
 }
 /**
  * @property {Function}addTipsHelper Acts like an executor. Finished the unit calculating and converting according to the given params.
@@ -83,6 +105,7 @@ function addListPriceTips(url_prefix) {
  */
 function addTipsHelper(price, title, func, appendFun, index) {
     var convertedResult = func(price, title);
+    console.log(convertedResult.finalPrice+'/'+convertedResult.finalUnit);
     if(convertedResult!=null){
         appendFun(convertedResult, index);
     }
@@ -137,7 +160,9 @@ function appendForHarris(convertedResult, index) {
 }
 function appendForTarget(convertedResult, index){
     var priceSpan = "[" + convertedResult.finalPrice + " / " + convertedResult.finalUnit + "]";
-    document.getElementsByClassName('price')[index].append(priceSpan);
+    if( !document.querySelectorAll('span[data-test=current-price]')[index].textContent.endsWith('.')){
+        document.querySelectorAll('span[data-test=current-price]')[index].append(priceSpan+'.');
+    }
 }
 function harrisConverter(price, title) {
     //solve if the price/unit is already provided by the website
@@ -267,12 +292,4 @@ function costcoConverter(price, title) {
         finalPrice: Math.round(unitPrice * 100) / 100,
     };
 
-}
-//unfinished
-function targetConverter(price, title) {
-    console.log(price);
-    console.log(title);
-    price = parseFloat(price.trim().substring(1));
-    title = title.trim().toLowerCase();
-    
 }
