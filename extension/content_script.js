@@ -105,7 +105,7 @@ function addListPriceTips(url_prefix) {
  */
 function addTipsHelper(price, title, func, appendFun, index) {
     var convertedResult = func(price, title);
-    console.log(convertedResult.finalPrice+'/'+convertedResult.finalUnit);
+    //console.log(convertedResult.finalPrice+'/'+convertedResult.finalUnit);
     if(convertedResult!=null){
         appendFun(convertedResult, index);
     }
