@@ -1,15 +1,17 @@
 var assert = require('assert');
 const { it } = require('node:test');
-var expect = require('chai').expect;
+const { expect } = require('chai');
 
-var getUnit = require('../extension/content_script');
+const harrisConverter = require('../extension/content_script.js');
 
-describe('getUnit to detect gallon', function(){
-    it('detect gallon', function(){
-        expect(getUnit('1', '1 gal')).to.be.equal('{finalPrice: \'1\', finalUnit: \'gal\'}');
+describe('harrisConverter tests', function(){
+    it('should could detect gallon', function(){
+        expect(harrisConverter('1', '1 gal')).to.be.a('Object');
+        expect(harrisConverter('1', '1 gal').finalPrice).to.be.equal('1.000');
+        expect(harrisConverter('1', '1 gal').finalUnit).to.be.equal('gal');
     });
 });
-
+/*
 testResult("getUnit can detect gal", () => {
     expect(getUnit("1","1 gal").toBe("{finalPrice: '1', finalUnit: 'gal'}"))
 });
@@ -57,3 +59,4 @@ testResult("getUnit can detect integer", () => {
 testResult("getUnit can detect float", () => {
     expect(getUnit("2.25",".5 oz").toBe("{finalPrice: '1.5', finalUnit: 'oz'}"))
 });
+*/
