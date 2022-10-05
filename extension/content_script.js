@@ -39,6 +39,12 @@ const RULE_SET = {
         //addListPriceTipForCostco();
     }
 })();
+/**
+ * @property {Function}addListPriceTips Acts like an controller. Designated different converter 
+ *                                      and append function for 'addTipsHelper()' according to 'url_prefix' 
+ * @param {string} url_prefix the unique identifier for target website.
+ * @returns no return value
+ */
 function addListPriceTips(url_prefix) {
     console.log('addListPriceTips_ is called:' + url_prefix);
     var totalPrice = document.getElementsByClassName(RULE_SET[url_prefix].price_label);
@@ -60,6 +66,12 @@ function addListPriceTips(url_prefix) {
         }
     }
 }
+/**
+ * @property {Function}addTipsHelper Acts like an executor. Finished the unit calculating and converting according to the given params.
+ * @param {string} totalPrice the raw price value extracted from labels
+ * @param {string} totalVolumn the raw volumn value extracted from labels.
+ * @returns no return value
+ */
 function addTipsHelper(totalPrice, totalVolumn, func, appendFun, index) {
     var convertedResult = func(totalPrice, totalVolumn);
     appendFun(convertedResult, index);
