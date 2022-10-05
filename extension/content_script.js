@@ -54,13 +54,13 @@ function addListPriceTips_(url_prefix){
             continue;
         }
         if(labelType==='value'){
-            addTipsHelper_(totalPrice[i].value,totalVolumn[i].textContent, RULE_SET[url_prefix].function,RULE_SET[url_prefix].append_function,i);
+            addTipsHelper(totalPrice[i].value,totalVolumn[i].textContent, RULE_SET[url_prefix].function,RULE_SET[url_prefix].append_function,i);
         }else if(labelType==='text'){
-            addTipsHelper_(totalPrice[i].textContent,totalVolumn[i].textContent, RULE_SET[url_prefix].function,RULE_SET[url_prefix].append_function,i);
+            addTipsHelper(totalPrice[i].textContent,totalVolumn[i].textContent, RULE_SET[url_prefix].function,RULE_SET[url_prefix].append_function,i);
         }
     }
 }
-function addTipsHelper_(totalPrice,totalVolumn,func,appendFun,index){
+function addTipsHelper(totalPrice,totalVolumn,func,appendFun,index){
     var convertedResult = func(totalPrice,totalVolumn);
     appendFun(convertedResult,index);
 }
