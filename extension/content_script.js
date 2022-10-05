@@ -1,89 +1,77 @@
+const RULE_SET = {
+    'https://www.harristeeter.com/p/' : {
+        price_label : 'kds-Price kds-Price--alternate mb-8',
+        capacity_label : 'kds-Text--l mr-8 text-primary ProductDetails-sellBy',
+        function : getUnit,
+        label_type : 'value',
+        append_function : appendForHarris
+    },
+    'https://www.harristeeter.com/search' : {
+        price_label : 'kds-Price kds-Price--alternate',
+        capacity_label : 'kds-Text--s text-neutral-more-prominent',
+        function : getUnit,
+        label_type: 'value',
+        append_function : appendForHarris
+    },
+    'https://www.costco.com/' : {
+        price_label : 'price',
+        capacity_label : 'description',
+        function : matchProduct,
+        label_type : 'text',
+        append_function : appendForCostco
+    }
+};
 (function() {
     var host = window.location.host.toLowerCase();
     window.priceTipEnabled = true;
     console.log(host)
-    if(host === 'www.harristeeter.com'){
-        try{
-            addPriceTipListener('kds-Price kds-Price--alternate',addListPriceTipS,1000);
-        }catch(e){
-            console.log(e);
-        }
-        
-        try{
-            addPriceTipListener('kds-Price kds-Price--alternate',addPriceTip,1000);
-        }catch(e){
-            console.log(e);
-        }
-    }else if(host ==='www.costco.com'){
-        addPriceTipListener('',addListPriceTipForCostco,1000);
+    var url = window.location.href.toLowerCase();
+    if(url.startsWith('https://www.harristeeter.com/p/')){
+        addListPriceTips_('https://www.harristeeter.com/p/');
+        //addPriceTip();
+    }
+    if(url.startsWith('https://www.harristeeter.com/search')){
+        addListPriceTips_('https://www.harristeeter.com/search');
+        //addListPriceTipS();
+    }
+    if(ur.startsWith('https://www.costco.com/')){
+        addListPriceTips_('https://www.costco.com/');
+        //addListPriceTipForCostco();
     }
 })();
+function addListPriceTips_(url_prefix){
+    console.log('addListPriceTips_ is called:'+url_prefix);
+    var totalPrice = document.getElementsByClassName( RULE_SET[url_prefix].price_label);
+    var totalVolumn = document.getElementsByClassName( RULE_SET[url_prefix].capacity_label);
 
-function addPriceTipListener(tag, func, time) {
-    //console.log(func.call());
-    var onModifiedFunc = function() {
-        $(this).unbind("DOMSubtreeModified");
-        func.call(this);
-        $(this).bind("DOMSubtreeModified", onModifiedFunc);
-    };
-    var eachCallFunc = function() {
-        $(tag).each(function() {
-            if (!$(this).attr('priceTip')) {
-                $(this).attr('priceTip', '1');
-                onModifiedFunc.call(this);
-            }
-        });
-    };
-    eachCallFunc();
-    if (time) {
-        setInterval(eachCallFunc, time);
-    }
-}
-function addListPriceTipS(){
-    console.log('addListPriceTips is called');
-    if (!window.priceTipEnabled) return;
-    var totalPrice = document.getElementsByClassName('kds-Price kds-Price--alternate');
-    console.log(totalPrice);
-    var totalVolumn = document.getElementsByClassName('kds-Text--s text-neutral-more-prominent');
-    console.log(totalVolumn);
-    for(let i =0;i<totalPrice.length;i++){
-        addTipsHelper(totalPrice[i].value,totalVolumn[i].textContent,i);
-    }
-}
-function addListPriceTipForCostco(){
-    console.log('addListPriceTipsForCostco is called');
-    var totalPrices = document.getElementsByClassName('price');
-    console.log(totalPrices);
-    var productInfos = document.getElementsByClassName('description');
-    console.log(productInfos);
-    for(let i=0;i<totalPrices.length;i++){
-        var price = totalPrices[i].textContent;
-        console.log('price: '+price+'type: '+typeof(price));
-        var convertPrice = parseFloat(price.trim().substring(1));
-        //why convertPrice is Nan?
-        console.log('after convert: '+ convertPrice);
-        var product = matchProduct(productInfos[i].textContent,price);
-        if(product==null){
+    console.log('price: '+totalPrice);
+    console.log('volume: ', totalVolumn);
+
+    var labelType =  RULE_SET[url_prefix].label_type;
+    var len = totalPrice.length;
+    for(let i = 0; i < len; i++ ){
+        if(totalPrice[i]===null||totalVolumn[i]===null){
             continue;
         }
-        addTipsHelperForCostco(product.price,product.unit,i);
+        if(labelType==='value'){
+            addTipsHelper_(totalPrice[i].value,totalVolumn[i].textContent, RULE_SET[url_prefix].function,RULE_SET[url_prefix].append_function,i);
+        }else if(labelType==='text'){
+            addTipsHelper_(totalPrice[i].textContent,totalVolumn[i].textContent, RULE_SET[url_prefix].function,RULE_SET[url_prefix].append_function,i);
+        }
     }
 }
-function addPriceTip(){
-    console.log('addListPriceTips is called');
-    if (!window.priceTipEnabled) return;
-    var totalPrice = document.getElementsByClassName('kds-Price kds-Price--alternate mb-8');
-    console.log(totalPrice);
-    var totalVolumn = document.getElementsByClassName('kds-Text--l mr-8 text-primary ProductDetails-sellBy');
-    console.log(totalVolumn);
-    addTipsHelper(totalPrice[0].value,totalVolumn[0].textContent,0);
+function addTipsHelper_(totalPrice,totalVolumn,func,appendFun,index){
+    var convertedResult = func(totalPrice,totalVolumn);
+    appendFun(convertedResult,index);
 }
-function addTipsHelper(totalPrice, totalVolumn,index){
-    var testResult = getUnit(totalPrice, totalVolumn);
-    console.log('testResult: '+testResult);
-    //insert content to page
+function appendForCostco(convertedResult,index){
+    console.log('unit price:'+convertedResult.finalPrice,'unit: '+convertedResult.finalUnit)
+    var priceSpan = "["+convertedResult.finalPrice+" / "+convertedResult.finalUnit+"]";
+    document.getElementsByClassName('price')[index].append(priceSpan);
+}
+function appendForHarris(convertedResult,index){
     var priceSpan = document.createElement('span');
-    priceSpan.innerHTML = "["+testResult.finalPrice+" / "+testResult.finalUnit+"]";
+    priceSpan.innerHTML = "["+convertedResult.finalPrice+" / "+convertedResult.finalUnit+"]";
     priceSpan.className = 'kds-Price-promotional-dropCaps';
     //left border/margin fails to work
     priceSpan.style = "font-size: 16px; left-margin: 20px";
@@ -95,8 +83,8 @@ function addTipsHelper(totalPrice, totalVolumn,index){
     //use the length of testResult to check whether the price/unit is already provided by the website
     //if it is provided, the length should be 1 - only has finalPrice as the result
     //otherwise, the length is 2 - finalPrice and finalUnit
-    if(Object.keys(testResult).length == 2){
-        priceSpan.innerHTML = "[$"+testResult.finalPrice+" / "+testResult.finalUnit+"]";
+    if(Object.keys(convertedResult).length == 2){
+        priceSpan.innerHTML = "[$"+convertedResult.finalPrice+" / "+convertedResult.finalUnit+"]";
 
         priceSpan.className = 'kds-Price-promotional-dropCaps';
         //left border/margin fails to work
@@ -123,17 +111,7 @@ function addTipsHelper(totalPrice, totalVolumn,index){
     }else{
         console.log("Price/unit is already provided.")
     }
-    
 }
-
-function addTipsHelperForCostco(unitPrice,unit,index){
-    console.log('unit price:'+unitPrice,'unit: '+unit)
-    var priceSpan = "["+unitPrice+" / "+unit+"]";
-    document.getElementsByClassName('price')[index].append(priceSpan);
-}
-
-
-//from unitPrice.js
 function getUnit(totalPrice, totalVolumn){
     //solve if the price/unit is already provided by the website
     
@@ -155,7 +133,6 @@ function getUnit(totalPrice, totalVolumn){
         //cut long tails after digit
         itemPriceByUnit = itemPriceByUnit.toFixed(3);
         console.log(itemPriceByUnit);
-
         var itemFinalUnit = '';
         
         switch(itemUnit){
@@ -198,10 +175,8 @@ function getUnit(totalPrice, totalVolumn){
         }
     }
 }
-
-function matchProduct(title, price){
+function matchProduct(price, title){
     title = title.trim().toLowerCase();
-
     console.log('title: '+title);
     price = parseFloat(price.trim().substring(1));
     var regQuant = "ct|pack|count";
@@ -255,10 +230,8 @@ function matchProduct(title, price){
     
     var unitPrice = parseFloat(price) / capacity;
     return {
-        productName: productName,
-        capacity: Math.round(capacity * 10000) / 10000,
-        unit: unit,
-        price: Math.round(unitPrice * 100) / 100,
+        finalUnit: unit,
+        finalPrice: Math.round(unitPrice * 100) / 100,
     };
 
 }
