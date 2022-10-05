@@ -184,6 +184,12 @@ function harrisConverter(price, title) {
                 break;
             case 'L': itemFinalUnit = 'L';
                 break;
+            case 'l': itemFinalUnit = 'L';
+                break;
+            case 'ml': itemFinalUnit = 'ml';
+                break;
+            case 'unit': itemFinalUnit = 'unit';
+                break;
             //may be some other units else?
 
             default: itemFinalUnit = 'unknown unit';
