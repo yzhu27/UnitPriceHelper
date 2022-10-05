@@ -2,21 +2,21 @@ const RULE_SET = {
     'https://www.harristeeter.com/p/' : {
         price_label : 'kds-Price kds-Price--alternate mb-8',
         capacity_label : 'kds-Text--l mr-8 text-primary ProductDetails-sellBy',
-        function : getUnit,
+        function : harrisConverter,
         label_type : 'value',
         append_function : appendForHarris
     },
     'https://www.harristeeter.com/search' : {
         price_label : 'kds-Price kds-Price--alternate',
         capacity_label : 'kds-Text--s text-neutral-more-prominent',
-        function : getUnit,
+        function : harrisConverter,
         label_type: 'value',
         append_function : appendForHarris
     },
     'https://www.costco.com/' : {
         price_label : 'price',
         capacity_label : 'description',
-        function : matchProduct,
+        function : costcoConverter,
         label_type : 'text',
         append_function : appendForCostco
     }
@@ -112,7 +112,7 @@ function appendForHarris(convertedResult,index){
         console.log("Price/unit is already provided.")
     }
 }
-function getUnit(totalPrice, totalVolumn){
+function harrisConverter(totalPrice, totalVolumn){
     //solve if the price/unit is already provided by the website
     
     if (totalVolumn[0] == '$'){
@@ -175,7 +175,7 @@ function getUnit(totalPrice, totalVolumn){
         }
     }
 }
-function matchProduct(price, title){
+function costcoConverter(price, title){
     title = title.trim().toLowerCase();
     console.log('title: '+title);
     price = parseFloat(price.trim().substring(1));
