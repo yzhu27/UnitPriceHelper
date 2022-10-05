@@ -34,7 +34,7 @@ const RULE_SET = {
         addListPriceTips('https://www.harristeeter.com/search');
         //addListPriceTipS();
     }
-    if(ur.startsWith('https://www.costco.com/')){
+    if(url.startsWith('https://www.costco.com/')){
         addListPriceTips('https://www.costco.com/');
         //addListPriceTipForCostco();
     }
