@@ -27,19 +27,19 @@ const RULE_SET = {
     console.log(host)
     var url = window.location.href.toLowerCase();
     if(url.startsWith('https://www.harristeeter.com/p/')){
-        addListPriceTips_('https://www.harristeeter.com/p/');
+        addListPriceTips('https://www.harristeeter.com/p/');
         //addPriceTip();
     }
     if(url.startsWith('https://www.harristeeter.com/search')){
-        addListPriceTips_('https://www.harristeeter.com/search');
+        addListPriceTips('https://www.harristeeter.com/search');
         //addListPriceTipS();
     }
     if(ur.startsWith('https://www.costco.com/')){
-        addListPriceTips_('https://www.costco.com/');
+        addListPriceTips('https://www.costco.com/');
         //addListPriceTipForCostco();
     }
 })();
-function addListPriceTips_(url_prefix){
+function addListPriceTips(url_prefix){
     console.log('addListPriceTips_ is called:'+url_prefix);
     var totalPrice = document.getElementsByClassName( RULE_SET[url_prefix].price_label);
     var totalVolumn = document.getElementsByClassName( RULE_SET[url_prefix].capacity_label);
