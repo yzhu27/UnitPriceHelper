@@ -1,6 +1,14 @@
-var assert = require("assert");
+var assert = require('assert');
+const { it } = require('node:test');
+var expect = require('chai').expect;
 
-const getUnit = require('../extension/content_script');
+var getUnit = require('../extension/content_script');
+
+describe('getUnit to detect gallon', function(){
+    it('detect gallon', function(){
+        expect(getUnit('1', '1 gal')).to.be.equal('{finalPrice: \'1\', finalUnit: \'gal\'}');
+    });
+});
 
 testResult("getUnit can detect gal", () => {
     expect(getUnit("1","1 gal").toBe("{finalPrice: '1', finalUnit: 'gal'}"))
