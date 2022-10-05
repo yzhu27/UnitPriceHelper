@@ -21,6 +21,22 @@ pricePart[0].appendChild(unitPrice);
 
 //Items Page: https://www.target.com/c/     https://www.target.com/s
 //code for search page
+var curItem
+var unitPart
+var unitText
+
+var numUnit
+var num
+var unit
+
+var pricePart
+var price
+var moneyUnit
+
+var res
+var perPrice
+var unitPrice
+
 function insert(i){
     var allItems = document.getElementsByClassName('styles__StyledRow-sc-wmoju4-0 kEpCtb')[3];
         //allItems.children[i]: i from 0-25, exclude 6 and 16
@@ -49,13 +65,6 @@ function insert(i){
         console.log(i);
 }
 
-insert(0)
-insert(1)
-insert(2)
-insert(3)
-insert(4)
-insert(5)
-insert(7)
 insert(8)
 
 
