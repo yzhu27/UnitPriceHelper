@@ -15,10 +15,10 @@ Online shopping sites give us more choices of products, but to some extent, onli
 
 ## Features
 - Display unit price tags on listing pages.
-<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_1.png"></p>
+<p align="center"><img width="800" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_1.png"></p>
 
 - Display unit price tags on product description pages.
-<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png"></p>
+<p align="center"><img width="800" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png"></p>
 ## Prerequisites
 
 
@@ -28,14 +28,14 @@ Online shopping sites give us more choices of products, but to some extent, onli
 git clone https://github.com/yzhu27/UnitPriceHelper.git
 ```
 - Open Google Chrome browser, click upper right three-dot "More" button $\rightarrow$ "More Tools" $\rightarrow$ "Extensions".
-<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_1.png"></p>
+<p align="center"><img width="800" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_1.png"></p>
 
 - Turn on "Developer mode", then choose "Load unpacked".
-<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_2.png"></p>
+<p align="center"><img width="800" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_2.png"></p>
 
 - Select <mark>**extension**<mark> folder in the UnitPriceHelper folder
   <p float="left">
-  <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="300" /><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="300" /> 
+  <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="400" /><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="400" /> 
   </p>
 - Open https://www.harristeeter.com/ or https://www.costco.com/, search your favorite product!
 
