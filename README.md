@@ -15,10 +15,10 @@ Online shopping sites give us more choices of products, but to some extent, onli
 
 ## Features
 - Display unit price tags on listing pages.
-![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_1.png)
+<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_1.png"></p>
 
 - Display unit price tags on product description pages.
-![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png)
+<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png"></p>
 ## Prerequisites
 
 
@@ -28,10 +28,10 @@ Online shopping sites give us more choices of products, but to some extent, onli
 git clone https://github.com/yzhu27/UnitPriceHelper.git
 ```
 - Open Google Chrome browser, click upper right three-dot "More" button $\rightarrow$ "More Tools" $\rightarrow$ "Extensions".
-![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_1.png)
+<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_1.png"></p>
 
 - Turn on "Developer mode", then choose "Load unpacked".
-![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_2.png)
+<p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_2.png"></p>
 
 - Select <mark>**extension**<mark> folder in the UnitPriceHelper folder.
 <center class="half">
@@ -42,7 +42,7 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 
 > **Note**
 > 1) Make sure you allow the extension to read and change this page.
-> <p align="center"><img width="300" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png"></p>
+> <p align="center"><img width="450" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png"></p>
 > 2) If the unit price tags doesn't appear, try to refresh your page.
 
 ## Testing
