@@ -12,7 +12,7 @@ Total : 85
 |Number of commits: by different people|3|#commit = [TBD] <br />https://github.com/yzhu27/UnitPriceHelper/graphs/contributors|
 |Issues reports: there are **many**|2|#issue = [TBD] <br />https://github.com/yzhu27/UnitPriceHelper/issues|
 |Issues are being closed|3|All issues have been closed till the due date.<br />https://github.com/yzhu27/UnitPriceHelper/issues|
-|DOI badge: exists|3|[TBD]|
+|DOI badge: exists|3|[https://github.com/yzhu27/UnitPriceHelper](https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md)|
 |Docs: doco generated, format not ugly |3|[TBD]|
 |Docs: what: point descriptions of each class/function (in isolation) |2|[TBD]|
 |Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|3|In the **Features** section in readme.<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md|
@@ -22,7 +22,7 @@ Total : 85
 |Use of style checkers |3|workflow[TBD]|
 |Use of code formatters. | 3 |workflow[TBD]|
 |Use of syntax checkers. | 3 |workflow[TBD]|
-|Use of code coverage |3|Code coverage is 70%. Shown in the badging.<br \>https://github.com/yzhu27/UnitPriceHelper|
+|Use of code coverage |3|Code coverage is 70%. Shown in the badging.<br />[https://github.com/yzhu27/UnitPriceHelper](https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md)|
 |Other automated analysis tools|3|[TBD]|
 |Test cases exist|3|https://github.com/yzhu27/UnitPriceHelper/tree/main/test|
 |Test cases are routinely executed| 3 |https://github.com/yzhu27/UnitPriceHelper/tree/main/test|
@@ -32,6 +32,6 @@ Total : 85
 |Test cases: a large proportion of the issues related to handling failing cases.|3|[TBD]|
 |Evidence that the whole team is using the same tools: everyone can get to all tools and files|3|All used VS Code.requirementlink[TBD]|
 |Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)|3| |
-|Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|3|features in readme are presented on different computers.https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md|
+|Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|3|features in readme are presented on different computers.<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md|
 |Evidence that the members of the team are working across multiple places in the code base|3|https://github.com/yzhu27/UnitPriceHelper/commits|
 |Short release cycles |3|https://github.com/yzhu27/UnitPriceHelper/commits|
