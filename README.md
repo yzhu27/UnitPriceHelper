@@ -40,6 +40,7 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 - Open https://www.harristeeter.com/ or https://www.costco.com/, search your favorite product!
 
 <br />
+  
 > **Note**
 > 1) Make sure you allow the extension to read and change this page.
 > <p align="center"><img width="450" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png"></p>
