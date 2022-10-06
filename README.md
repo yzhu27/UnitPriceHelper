@@ -33,11 +33,10 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 - Turn on "Developer mode", then choose "Load unpacked".
 <p align="center"><img width="600" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_2.png"></p>
 
-- Select <mark>**extension**<mark> folder in the UnitPriceHelper folder.
-<figure class="half">
-<img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="250"/><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="250"/>
-</figure>
-
+- Select <mark>**extension**<mark> folder in the UnitPriceHelper folder
+  <p float="left">
+  <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="300" /><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="300" /> 
+  </p>
 - Open https://www.harristeeter.com/ or https://www.costco.com/, search your favorite product!
 
 > **Note**
