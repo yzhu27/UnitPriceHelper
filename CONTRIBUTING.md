@@ -24,11 +24,15 @@ This section guides you through submitting a bug report.
 
 - Explain which behavior you expected to see instead and why.
 
+### Function Enhancement
+We hope to apply this extension to more shopping sites. So if you find some websites that adapt our extension, please let us know or complete the adaptation in person! But remember that the unit prices appearing on the website should be consistent with our existing format.
 ### Creating Issues
 #### Assigning an issue
 you can scroll through the issues and find something that you can work on and assign it to yourself.
 #### Closing an Issue
 You can close an issue after the development and testing for a feature or task is completed.
+
+
 
 
 
