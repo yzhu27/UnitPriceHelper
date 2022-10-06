@@ -22,5 +22,8 @@ Online shopping sites give us more choices of products, but to some extent, this
 
 
 ## Testing
-
+```
+npm install
+npm run test:unit
+```
 ## Contributors
