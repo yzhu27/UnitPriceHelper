@@ -41,9 +41,9 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 - Open https://www.harristeeter.com/ or https://www.costco.com/, search your favorite product!
 
 > **Note**
-> $\bullet $ Make sure you allow the extension to read and change this page.
-> ![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png)
-> $\bullet $ If the unit price tags doesn't appear, try to refresh your page.
+> 1) Make sure you allow the extension to read and change this page.
+> <p align="center"><img width="300" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png"></p>
+> 2) If the unit price tags doesn't appear, try to refresh your page.
 
 ## Testing
 ```
