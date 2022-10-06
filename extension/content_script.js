@@ -176,15 +176,15 @@ function harrisConverter(price, title) {
         //quantity cannot solve 1/2 yet
         //quantity can already solve 0.5 by yZhu
         var itemQuantity = title.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
-        console.log(itemQuantity);
+        //console.log(itemQuantity);
 
         //optimize to solve special cases as '20 ct 0.85'
         var itemUnit = title.match(/\s((([a-zA-Z]*\s?[a-zA-Z]+)*))/)[1];
-        console.log(itemUnit);
+        //console.log(itemUnit);
         var itemPriceByUnit = parseFloat(price) / parseFloat(itemQuantity);
         //cut long tails after digit
         itemPriceByUnit = itemPriceByUnit.toFixed(3);
-        console.log(itemPriceByUnit);
+        //console.log(itemPriceByUnit);
         var itemFinalUnit = '';
 
         switch (itemUnit) {
@@ -225,7 +225,7 @@ function harrisConverter(price, title) {
             return null;
         }
         else {
-            console.log("Hihi");
+            //console.log("Hihi");
             return {
                 finalPrice: itemPriceByUnit,
                 finalUnit: itemFinalUnit
