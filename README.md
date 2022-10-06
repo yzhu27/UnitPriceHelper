@@ -3,7 +3,7 @@
 # UnitPriceHelper
 
 ![GitHub Contributor](https://img.shields.io/github/contributors/yzhu27/UnitPriceHelper)
-
+![GitHub Build](https://img.shields.io/github/workflow/status/yzhu27/UnitPriceHelper/run%20unit%20tests)
 ## 
 UnitPriceHelper is an Google Chrome extension that allows to display the prices per unit for the products on multi shopping sites, including Harris Teeter, [TBD].
 
