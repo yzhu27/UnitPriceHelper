@@ -233,13 +233,13 @@ function harrisConverter(price, title) {
         }
     }
 }
-module.exports=harrisConverter;
+
 function costcoConverter(price, title) {
     title = title.trim().toLowerCase();
-    console.log('title: ' + title);
+    //console.log('title: ' + title);
     price = parseFloat(price.trim().substring(1));
     var regQuant = "ct|pack|count";
-    var regWeigh = "g|kg|lb|fl oz|oz|qt|lbs|fl. oz";
+    var regWeigh = "g|kg|lb|fl oz|oz|qt|lbs|fl. oz|ml";
     var regFloat = "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?";
 
     var reg1 = new RegExp('([a-zA-Z\\s]*),?\\s*(' + regFloat + ')\\s*(' + regWeigh + ')(?:\\s*\\/*,?\\s*)(\\d*)-?((?:\\s*(' + regQuant + ')\\s*)*)?')
@@ -252,7 +252,7 @@ function costcoConverter(price, title) {
     var productName = null;
     reg.lastIndex = 0;
     match = reg.exec(title);
-    console.log(match);
+    //console.log(match);
     //No count and capacity: no need to convert
     if (match == null || match.length == 1) {
         return null;
@@ -294,3 +294,7 @@ function costcoConverter(price, title) {
     };
 
 }
+module.exports={
+    harrisConverter,
+    costcoConverter
+};
