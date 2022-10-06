@@ -14,15 +14,36 @@ Online shopping sites give us more choices of products, but to some extent, onli
 [video]
 
 ## Features
+- Display unit price tags on listing pages.
+![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_1.png)
 
-
+- Display unit price tags on product description pages.
+![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png)
 ## Prerequisites
 
 
 ## Installation
+- Git clone this repository.
 ```
 git clone https://github.com/yzhu27/UnitPriceHelper.git
 ```
+- Open Google Chrome browser, click upper right three-dot "More" button $\rightarrow$ "More Tools" $\rightarrow$ "Extensions".
+![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_1.png)
+
+- Turn on "Developer mode", then choose "Load unpacked".
+![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_2.png)
+
+- Select <mark>**extension**<mark> folder in the UnitPriceHelper folder.
+<center class="half">
+    <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="300"/><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="300"/>
+</center>
+
+- Open https://www.harristeeter.com/ or https://www.costco.com/, search your favorite product!
+
+> **Note**
+> $\bullet $ Make sure you allow the extension to read and change this page.
+> ![image](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png)
+> $\bullet $ If the unit price tags doesn't appear, try to refresh your page.
 
 ## Testing
 ```
@@ -30,3 +51,9 @@ npm install
 npm run test:unit
 ```
 ## Contributors
+**SE22 Group 7**
+- Pinxiang Wang
+- Jiayuan Huang
+- Yuheng Zhu
+- Mengzhe Wang
+- Yiran Zhu
