@@ -1,13 +1,11 @@
 {
-  "dependencies": {
-    "chai-dom": "^1.11.0",
-    "mocha": "^10.0.0"
-  },
   "devDependencies": {
     "chai": "^4.3.6",
     "jsdom": "20.0.1",
     "jsdom-global": "3.0.2",
-    "mocha-jsdom": "^2.0.0"
+    "mocha-jsdom": "^2.0.0",
+    "chai-dom": "^1.11.0",
+    "mocha": "^10.0.0"
   },
   "scripts": {
     "test:unit": "mocha test/unit"
