@@ -95,6 +95,7 @@ function addListPriceTips(url_prefix) {
             addTipsHelper(totalPrice[i].textContent, totalVolumn[i].textContent, RULE_SET[url_prefix].function, RULE_SET[url_prefix].append_function, i);
         }
     }
+    console.log(len);
     return len;
 }
 /**
@@ -295,6 +296,7 @@ function costcoConverter(price, title) {
 
 }
 module.exports={
+    addListPriceTips,
     harrisConverter,
     costcoConverter
 };

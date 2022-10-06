@@ -4,7 +4,28 @@ const { JSDOM } = require('jsdom');
 chai.use(require('chai-dom'));
 require('jsdom-global')();
 
-const { harrisConverter, costcoConverter} = require('../../extension/content_script.js');
+const { 
+    addListPriceTips,
+    harrisConverter, 
+    costcoConverter
+} = require('../../extension/content_script.js');
+
+describe('addListPriceTips tests', function(){
+    beforeEach((done) => {
+        JSDOM.fromFile('./test/unit/index.html')
+        .then((dom) => {
+          global.document = dom.window.document
+          global.window = dom.window
+        })
+      .then(done, done);
+      })
+    
+    it('distinguish websites', function(){
+        expect(addListPriceTips('https://www.harristeeter.com/search')).to.be.equal(0);
+    });
+
+});
+
 describe('harrisConverter tests', function(){
     beforeEach((done) => {
         JSDOM.fromFile('./test/unit/index.html')
