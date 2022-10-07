@@ -72,7 +72,7 @@ function addTipsHelper(totalPrice, totalVolumn,index){
         priceSpan.style = "font-size: 16px; left-margin: 20px";
 
         //insert content to page
-        var priceSpan = document.createElement('span');
+        priceSpan = document.createElement('span');
         priceSpan.innerHTML = "["+testResult.finalPrice+" / "+testResult.finalUnit+"]";
         priceSpan.className = 'kds-Price-promotional-dropCaps';
         //left border/margin fails to work
@@ -84,8 +84,10 @@ function addTipsHelper(totalPrice, totalVolumn,index){
 }
 function getUnit(totalPrice, totalVolumn){
     // console.log("The volumn starts with: "+totalVolumn[0]);
+
+    var itemFinalUnit = '';
     if (totalVolumn[0] == '$'){
-        var itemFinalUnit = totalVolumn;
+        itemFinalUnit = totalVolumn;
         return {
             finalPrice: itemFinalUnit
         }
@@ -101,7 +103,7 @@ function getUnit(totalPrice, totalVolumn){
         //cut long tails after digit
         itemPriceByUnit = itemPriceByUnit.toFixed(3);
         // console.log(itemPriceByUnit);
-        var itemFinalUnit = '';
+
         switch(itemUnit){
             case 'gal': itemFinalUnit = 'gal';
             break;

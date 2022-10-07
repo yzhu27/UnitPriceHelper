@@ -119,10 +119,11 @@ function addListPriceTips(url_prefix) {
  */
 function addTipsHelper(price, title, func, appendFun, index) {
     var convertedResult = func(price, title);
-    console.log(convertedResult.finalPrice + '/' + convertedResult.finalUnit);
     if (convertedResult != null) {
+        console.log(convertedResult.finalPrice + '/' + convertedResult.finalUnit);
         appendFun(convertedResult, index);
     }
+
 }
 function appendForCostco(convertedResult, index) {
     console.log('unit price:' + convertedResult.finalPrice, 'unit: ' + convertedResult.finalUnit);
@@ -180,9 +181,9 @@ function appendForTarget(convertedResult, index) {
 }
 function harrisConverter(price, title) {
     //solve if the price/unit is already provided by the website
-
+    var itemFinalUnit = '';
     if (title[0] == '$') {
-        var itemFinalUnit = title;
+        itemFinalUnit = title;
         return {
             finalPrice: itemFinalUnit
         }
@@ -199,7 +200,7 @@ function harrisConverter(price, title) {
         //cut long tails after digit
         itemPriceByUnit = itemPriceByUnit.toFixed(3);
         //console.log(itemPriceByUnit);
-        var itemFinalUnit = '';
+
 
         switch (itemUnit) {
             case 'gal': itemFinalUnit = 'gal';
@@ -208,7 +209,7 @@ function harrisConverter(price, title) {
                 break;
             case 'fl oz': itemFinalUnit = 'oz';
                 break;
-            case 'ct': itemFinalUnit = 'item';
+            case 'ct': itemFinalUnit = 'count';
                 break;
             case 'lb': itemFinalUnit = 'lb';
                 break;
@@ -229,6 +230,18 @@ function harrisConverter(price, title) {
             case 'ml': itemFinalUnit = 'ml';
                 break;
             case 'unit': itemFinalUnit = 'unit';
+                break;
+            case 'box': itemFinalUnit = 'box';
+                break;
+            case 'boxes': itemFinalUnit = 'box';
+                break;
+            case 'suit': itemFinalUnit = 'suit';
+                break;
+            case 'suits': itemFinalUnit = 'suit';
+                break;
+            case 'bag': itemFinalUnit = 'bag';
+                break;
+            case 'bags': itemFinalUnit = 'bag';
                 break;
             //may be some other units else?
 

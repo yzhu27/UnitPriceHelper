@@ -10,9 +10,11 @@ const {
     costcoConverter
 } = require('../../extension/content_script.js');
 
-describe('addListPriceTips tests', function(){
+describe('addListPriceTips test for harris teeter', function(){
     beforeEach((done) => {
-        JSDOM.fromFile('./test/unit/index.html')
+        //JSDOM.fromFile('./test/unit/index.html')
+        JSDOM.fromFile('./test/unit/HarrisTeeter.txt')
+        //JSDOM.fromURL('https://www.harristeeter.com/search?query=oil')
         .then((dom) => {
           global.document = dom.window.document
           global.window = dom.window
@@ -21,10 +23,46 @@ describe('addListPriceTips tests', function(){
       })
     
     it('distinguish websites', function(){
-        expect(addListPriceTips('https://www.harristeeter.com/search')).to.be.equal(0);
+        expect(addListPriceTips('https://www.harristeeter.com/search')).to.be.not.equal(0);
     });
 
 });
+
+describe('addListPriceTips test for costco', function(){
+    beforeEach((done) => {
+        //JSDOM.fromFile('./test/unit/index.html')
+        //JSDOM.fromFile('./test/unit/HarrisTeeter.html')
+        JSDOM.fromURL('https://www.costco.com/royal-basmati-rice%2c-20-lbs.product.100315872.html')
+        .then((dom) => {
+          global.document = dom.window.document
+          global.window = dom.window
+        })
+      .then(done, done);
+      })
+    
+    it('distinguish websites', function(){
+        expect(addListPriceTips('https://www.costco.com/')).to.be.equal(0);
+    });
+
+});
+
+// describe('addListPriceTips test for target', function(){
+//     beforeEach((done) => {
+//         //JSDOM.fromFile('./test/unit/index.html')
+//         //JSDOM.fromFile('./test/unit/HarrisTeeter.html')
+//         JSDOM.fromURL('https://www.target.com/s?searchTerm=oil')
+//         .then((dom) => {
+//           global.document = dom.window.document
+//           global.window = dom.window
+//         })
+//       .then(done, done);
+//       })
+    
+//     it('distinguish websites', function(){
+//         expect(addListPriceTips('https://www.target.com/s')).to.be.equal(0);
+//     });
+
+// });
 
 describe('harrisConverter tests', function(){
     beforeEach((done) => {

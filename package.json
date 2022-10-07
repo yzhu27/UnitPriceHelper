@@ -2,6 +2,7 @@
   "devDependencies": {
     "chai": "^4.3.6",
     "chai-dom": "^1.11.0",
+    "istanbul-badges-readme": "^1.8.2",
     "jsdom": "20.0.1",
     "jsdom-global": "3.0.2",
     "mocha": "^10.0.0",
@@ -9,6 +10,16 @@
     "nyc": "^15.1.0"
   },
   "scripts": {
-    "test:unit": "nyc --reporter=text mocha test/unit"
+    "test:unit": "nyc mocha test/unit",
+    "make-badges": "istanbul-badges-readme"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "json-summary"
+    ],
+    "all": false
   }
 }

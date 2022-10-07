@@ -10,9 +10,10 @@ console.log(totalVolumn);
 
 function getUnit(totalPrice, totalVolumn){
     //solve if the price/unit is already provided by the website
-    
+    var itemFinalUnit = '';
+
     if (totalVolumn[0] == '$'){
-        var itemFinalUnit = totalVolumn;
+        itemFinalUnit = totalVolumn;
         return {
             finalPrice: itemFinalUnit
         }
@@ -30,7 +31,7 @@ function getUnit(totalPrice, totalVolumn){
         itemPriceByUnit = itemPriceByUnit.toFixed(3);
         console.log(itemPriceByUnit);
 
-        var itemFinalUnit = '';
+
         
         switch(itemUnit){
             case 'gal': itemFinalUnit = 'gal';
