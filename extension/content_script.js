@@ -106,10 +106,11 @@ function addListPriceTips(url_prefix) {
  */
 function addTipsHelper(price, title, func, appendFun, index) {
     var convertedResult = func(price, title);
-    console.log(convertedResult.finalPrice + '/' + convertedResult.finalUnit);
     if (convertedResult != null) {
         appendFun(convertedResult, index);
     }
+    console.log(convertedResult.finalPrice + '/' + convertedResult.finalUnit);
+
 }
 function appendForCostco(convertedResult, index) {
     console.log('unit price:' + convertedResult.finalPrice, 'unit: ' + convertedResult.finalUnit);
@@ -261,7 +262,7 @@ function costcoConverter(price, title) {
     var capacity;
     var caps = match[pos.pCap].split('-');
     productName = match[1];
-    var count = match[3];
+    //var count = match[3];
     if (caps.length == 2) {
         capacity = (parseFloat(caps[0].trim()) + parseFloat(caps[1].trim())) / 2;
     } else {

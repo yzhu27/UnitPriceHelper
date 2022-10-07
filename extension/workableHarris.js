@@ -72,7 +72,7 @@ function addTipsHelper(totalPrice, totalVolumn,index){
         priceSpan.style = "font-size: 16px; left-margin: 20px";
 
         //insert content to page
-        var priceSpan = document.createElement('span');
+        priceSpan = document.createElement('span');
         priceSpan.innerHTML = "["+testResult.finalPrice+" / "+testResult.finalUnit+"]";
         priceSpan.className = 'kds-Price-promotional-dropCaps';
         //left border/margin fails to work

@@ -22,20 +22,20 @@ pricePart[0].appendChild(unitPrice);
 //Items Page: https://www.target.com/c/     https://www.target.com/s
 //code for search page
 var curItem
-var unitPart
-var unitText
+//var unitPart
+//var unitText
 
-var numUnit
-var num
-var unit
+//var numUnit
+//var num
+//var unit
 
-var pricePart
-var price
-var moneyUnit
+//var pricePart
+//var price
+//var moneyUnit
 
 var res
-var perPrice
-var unitPrice
+//var perPrice
+//var unitPrice
 
 function insert(i){
     var allItems = document.getElementsByClassName('styles__StyledRow-sc-wmoju4-0 kEpCtb')[3];
