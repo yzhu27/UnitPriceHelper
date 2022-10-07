@@ -196,7 +196,7 @@ function harrisConverter(price, title) {
                 break;
             case 'fl oz': itemFinalUnit = 'oz';
                 break;
-            case 'ct': itemFinalUnit = 'item';
+            case 'ct': itemFinalUnit = 'count';
                 break;
             case 'lb': itemFinalUnit = 'lb';
                 break;
