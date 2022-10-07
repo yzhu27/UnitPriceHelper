@@ -27,9 +27,11 @@ Online shopping sites give us more choices of products, but to some extent, onli
 
 ## Supported Websites
 
-<div align=center><a href="https://www.harristeeter.com/"><img src="https://searchlogovector.com/wp-content/uploads/2018/06/harris-teeter-logo-vector.png" width="400" /></a></div>
+- <a href="https://www.harristeeter.com/"><img src="https://searchlogovector.com/wp-content/uploads/2018/06/harris-teeter-logo-vector.png" width="200" /></a>
 
-<div align=center><a href="https://www.costco.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Costco_Wholesale_logo_2010-10-26.svg/512px-Costco_Wholesale_logo_2010-10-26.svg.png" width="400" /></a></div>
+- <a href="https://www.costco.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Costco_Wholesale_logo_2010-10-26.svg/512px-Costco_Wholesale_logo_2010-10-26.svg.png" width="200" /></a>
+
+- <a href="https://www.target.com/"><img src="https://chapelboromedia.s3.amazonaws.com/uploads/2018/11/14112305/TGT-logo.png" width="200" /></a>
 
 More will be supported in the future...
 
@@ -48,7 +50,7 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
   <p float="left">
   <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="450" /><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="450" /> 
   </p>
-- Open [Harris Teeter](https://www.harristeeter.com/) or [Costco Wholesale](https://www.costco.com/), search your favorite product!
+- Start your online shopping!
 
 <br />
   
