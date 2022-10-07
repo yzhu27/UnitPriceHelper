@@ -73,10 +73,9 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 - Code Syntax Checker : [Eslint](https://https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) for Vscode plugin.
 
 ## Test and Coverage
-![Statements](#statements#)
-![Branches](#branches#)
-![Functions](#functions#)
-![Lines](#lines#)
+| Statements                  | Branches                | Functions                 | Lines             |
+| --------------------------- | ----------------------- | ------------------------- | ----------------- |
+| ![Statements](#statements#) | ![Branches](#branches#) | ![Functions](#functions#) | ![Lines](#lines#) |
 ### Unit Test
   
   - [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
