@@ -21,5 +21,8 @@
       "json-summary"
     ],
     "all": false
+  },
+  "dependencies": {
+    "git-filter-repo": "^0.0.30"
   }
 }
