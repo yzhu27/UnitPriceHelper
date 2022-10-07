@@ -7,6 +7,7 @@
             addPriceTipListener('kds-Price kds-Price--alternate',addListPriceTipS,1000);
         }catch(e){
             console.log(e);
+            //call for each time it is harristeeter
         }
         
         try{
