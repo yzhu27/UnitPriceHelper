@@ -31,4 +31,4 @@ jobs:
     - name: Run All Node.js Unit Tests
       run: npm run test:unit
     - name: add coverage badge
-      run: npm run make-badge
+      run: npm run make-badges
