@@ -87,7 +87,7 @@ describe('harrisConverter tests', function(){
 
     it('detect ct', function(){
         expect(harrisConverter('1', '1 ct')).to.be.a('Object');
-        expect(harrisConverter('1', '1 ct').finalUnit).to.be.equal('item');
+        expect(harrisConverter('1', '1 ct').finalUnit).to.be.equal('count');
     });
 
     it('detect lb', function(){
@@ -177,14 +177,5 @@ describe('costcoConverter tests', function(){
         expect(costcoConverter('3.99', 'rice, 2 lb,3-packs').finalUnit).to.be.equal('lb');
     });
 
-    it('convert g to kg', function(){
-        expect(costcoConverter('8', 'lays chips, 350 g,2-packs')).to.be.a('Object');
-        expect(costcoConverter('8', 'lays chips, 350 g,2-packs').finalUnit).to.be.equal('kg');
-    });
-
-    it('convert ml to L', function(){
-        expect(costcoConverter('10', 'diet coke, 1500 ml,12-packs')).to.be.a('Object');
-        expect(costcoConverter('10', 'diet coke, 1500 ml,12-packs').finalUnit).to.be.equal('L');
-    });
 
 });
