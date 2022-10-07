@@ -47,6 +47,19 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 > <p align="center"><img width="450" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png"></p>
 > 2) If the unit price tags doesn't appear, try to refresh your page.
 
+## Languages
+
+- JavaScript
+- HTML
+
+## Style Checker and Code Fomatter
+
+- IDE and Style Checker: [VSCode](https://code.visualstudio.com/)
+
+- Code Style Formatter: [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
+
+- Code Syntax Checker : [Eslint](https://https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) for Vscode plugin.
+
 ## Test and Coverage
 
 ### Unit Test
