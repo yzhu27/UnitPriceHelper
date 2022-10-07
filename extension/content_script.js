@@ -87,13 +87,13 @@ const REGEX = {
 function addListPriceTips(url_prefix) {
     console.log('addListPriceTips_ is called:' + url_prefix);
     // query didn't work for 'Target' website
-    // console.log(document);
+    //console.log(document);
     var totalPrice = document.querySelectorAll(RULE_SET[url_prefix].price_label);
     var totalVolumn = document.querySelectorAll(RULE_SET[url_prefix].capacity_label);
-    // console.log(RULE_SET[url_prefix].price_label);
-    // console.log('len: '+totalPrice.length);
-    // console.log('price: ' + totalPrice[0].textContent);
-    // console.log('volume: ', totalVolumn[0].textContent);
+    //console.log(RULE_SET[url_prefix].price_label);
+    //console.log('len: '+totalPrice.length);
+    //console.log('price: ' + totalPrice[0].textContent);
+    //console.log('volume: ', totalVolumn[0].textContent);
 
     var labelType = RULE_SET[url_prefix].label_type;
     var len = totalPrice.length;
@@ -213,13 +213,11 @@ function harrisConverter(price, title) {
                 break;
             case 'lb': itemFinalUnit = 'lb';
                 break;
-            case 'bag': itemFinalUnit = 'Bag';
+            case 'pack': itemFinalUnit = 'pack';
                 break;
-            case 'pack': itemFinalUnit = 'Pack';
+            case 'pk': itemFinalUnit = 'pack';
                 break;
             case 'bottles': itemFinalUnit = 'Bottle';
-                break;
-            case 'pk': itemFinalUnit = 'Pack';
                 break;
             case 'cans': itemFinalUnit = 'can';
                 break;
@@ -303,6 +301,9 @@ if (typeof process === "object" && typeof require === "function") {
     module.exports={
         addListPriceTips,
         harrisConverter,
-        costcoConverter
+        costcoConverter,
+        appendForHarris,
+        appendForCostco,
+        appendForTarget
     };
 }
