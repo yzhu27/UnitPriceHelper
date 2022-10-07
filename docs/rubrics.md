@@ -22,7 +22,7 @@ Total : 85
 |Use of style checkers |3|https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
 |Use of code formatters. | 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
 |Use of syntax checkers. | 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
-|Use of code coverage |3|Code coverage is 70%. Shown in the badging.<br />[https://github.com/yzhu27/UnitPriceHelper](https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md)|
+|Use of code coverage |3|Code coverage is 70%. Shown in the badging.<br />[https://github.com/yzhu27/UnitPriceHelper](https://github.com/yzhu27/UnitPriceHelper#test-and-coverage)|
 |Other automated analysis tools|3|DeepScan<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#automated-analysis-tool|
 |Test cases exist|3|https://github.com/yzhu27/UnitPriceHelper/tree/main/test|
 |Test cases are routinely executed| 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/.github/workflows/node.js.yml|
