@@ -249,7 +249,7 @@ function costcoConverter(price, title) {
     var reg = reg1;
     var pos = pos1;
     var match = null;
-    var cap = 0, count = 0, lastMul = 1;
+    var cap = 0, count = 0, lastMul;
     var un = '', tip = '';
     //var productName = null;
     reg.lastIndex = 0;
