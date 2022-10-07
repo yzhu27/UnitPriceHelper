@@ -7,6 +7,14 @@ const RULE_SET = {
         append_function: appendForHarris,
         website_type: 'static'
     },
+    'https://www.harristeeter.com/pl/': {
+        price_label: "data",
+        capacity_label: "span[class='kds-Text--s text-neutral-more-prominent']",
+        function: harrisConverter,
+        label_type: 'value',
+        append_function: appendForHarris,
+        website_type: 'static'
+    },
     'https://www.harristeeter.com/search': {
         price_label: "data",
         capacity_label: "span[class='kds-Text--s text-neutral-more-prominent']",
@@ -45,8 +53,14 @@ const TARGET_URL_PREFIX = [
     'https://www.harristeeter.com/search',
     'https://www.costco.com/',
     'https://www.target.com/s',
-    'https://www.wholefoodsmarket.com/search'
+    'https://www.wholefoodsmarket.com/search',
+    'https://www.harristeeter.com/pl/'
 ];
+const REGEX = {
+    unit : 'gal|g|kg|lbs|lb|fl oz|oz|qt|fl. oz|ml|litter|Litter|l|L',
+    quant : 'ct|pack|count',
+    float : "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?"
+};
 (function () {
     var host = window.location.host.toLowerCase();
     window.priceTipEnabled = true;
@@ -64,7 +78,6 @@ const TARGET_URL_PREFIX = [
         }
     }
 })();
-
 /**
  * @property {Function}addListPriceTips Acts like an controller. Designated different converter 
  *                                      and append function for 'addTipsHelper()' according to 'url_prefix' 
@@ -237,66 +250,43 @@ function harrisConverter(price, title) {
 
 function costcoConverter(price, title) {
     title = title.trim().toLowerCase();
-    //console.log('title: ' + title);
+    console.log('title: ' + title);
     price = parseFloat(price.trim().substring(1));
-    var regQuant = "ct|pack|count";
-    var regWeigh = "g|kg|lb|fl oz|oz|qt|lbs|fl. oz|ml";
-    var regFloat = "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?";
-
-    var reg1 = new RegExp('([a-zA-Z\\s]*),?\\s*(' + regFloat + ')\\s*(' + regWeigh + ')(?:\\s*\\/*,?\\s*)(\\d*)-?((?:\\s*(' + regQuant + ')\\s*)*)?')
-    var pos1 = { i: 3, pCap: 2, pUnit: 3, pCount: 4 }
-    var reg = reg1;
-    var pos = pos1;
-    var match = null;
-    var cap = 0, count = 0, lastMul = 1;
-    var un = '', tip = '';
-    var productName = null;
-    reg.lastIndex = 0;
-    match = reg.exec(title);
-    //console.log(match);
-    //No count and capacity: no need to convert
-    if (match == null || match.length == 1) {
-        return null;
+    var regQuant = REGEX.quant;
+    var regUnit = REGEX.unit;
+    var regFloat = REGEX.float;
+    var unitMatcher = new RegExp('(' + regFloat + ')-?\\s*?' + '('+ regUnit + ')');
+    var quantMatcher = new RegExp('(' + regFloat + ')-?\\s*?' + '('+ regQuant + ')');
+    var matchQuant = null;
+    var matchUnit = null;
+    matchQuant = quantMatcher.exec(title);
+    matchUnit = unitMatcher.exec(title);
+    var unit = ' ';
+    var count = 'count';
+    var quant = 1;
+    var capacity = 1;
+    if(matchQuant!=null){
+        console.log(matchQuant[0]);
+        count = matchQuant[2];
+        quant = parseFloat(matchQuant[1]);
     }
-    var capacity;
-    var caps = match[pos.pCap].split('-');
-    productName = match[1];
-    var count = match[3];
-    if (caps.length == 2) {
-        capacity = (parseFloat(caps[0].trim()) + parseFloat(caps[1].trim())) / 2;
-    } else {
-        capacity = parseFloat(match[pos.pCap].trim());
+    if(matchUnit!=null){
+        console.log(matchUnit[0]);
+        unit = matchUnit[2];
+        capacity = parseFloat(matchUnit[1]);
     }
-
-    if (match.length > 3 && match[pos.pCount]) {
-        var multiple = match[pos.pCount].match(/\d+/g);
-        if (multiple) for (var i = 0; i < multiple.length; ++i) {
-            lastMul = parseInt(multiple[i]);
-            capacity *= lastMul;
-        }
+    var unitPrice = parseFloat(price) / (capacity*quant);
+    if(unit === ' ' ){
+        unit = count;
     }
-
-    var unit = match[pos.pUnit].toLowerCase();
-
-    if (unit === 'g') {
-        capacity /= 1000;
-        unit = 'kg';
-    } else if (unit === 'ml') {
-        capacity /= 1000;
-        unit = 'L';
-    } else if (unit === 'l') {
-        unit = 'L';
-    }
-
-    var unitPrice = parseFloat(price) / capacity;
     return {
         finalUnit: unit,
         finalPrice: Math.round(unitPrice * 100) / 100,
     };
 
 }
-module.exports={
-    addListPriceTips,
-    harrisConverter,
-    costcoConverter
-};
+// module.exports={
+//     addListPriceTips,
+//     harrisConverter,
+//     costcoConverter
+// };
