@@ -75,7 +75,7 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 ## Test and Coverage
 | Statements                  | Branches                | Functions                 | Lines             |
 | --------------------------- | ----------------------- | ------------------------- | ----------------- |
-| ![Statements](https://img.shields.io/badge/statements-70.07%25-red.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-53.96%25-red.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-44.44%25-red.svg?style=flat) | ![Lines](https://img.shields.io/badge/lines-68.7%25-red.svg?style=flat) |
+| ![Statements](https://img.shields.io/badge/statements-84.67%25-yellow.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-68.25%25-red.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-66.66%25-red.svg?style=flat) | ![Lines](https://img.shields.io/badge/lines-83.96%25-yellow.svg?style=flat) |
 ### Unit Test
   
   - [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
