@@ -47,11 +47,29 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 > <p align="center"><img width="450" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_5.png"></p>
 > 2) If the unit price tags doesn't appear, try to refresh your page.
 
-## Testing
-```
-npm install
-npm run test:unit
-```
+## Test and Coverage
+
+### Unit Test
+  
+  - [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
+    
+  - Setup
+  
+    From the repository root, run:
+    ```
+    npm install
+    npm run test:unit
+    ```
+### Code Coverage
+  
+  - [Istanbul](https://istanbul.js.org/)
+
+## Automated Analysis Tool
+
+- [DeepScan](https://deepscan.io/dashboard#view=project&tid=19191&pid=22531&bid=667106)
+
+<img width="1427" alt="deepScan" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/deepscan.png">
+
 ## Contributors
 **SE22 Group 7**
 - Pinxiang Wang
