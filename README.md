@@ -36,7 +36,7 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 
 - Select <mark>**extension**<mark> folder in the UnitPriceHelper folder
   <p float="left">
-  <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="300" /><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="300" /> 
+  <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="450" /><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="450" /> 
   </p>
 - Open https://www.harristeeter.com/ or https://www.costco.com/, search your favorite product!
 
