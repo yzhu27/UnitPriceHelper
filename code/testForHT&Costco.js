@@ -190,7 +190,6 @@ function getUnit(totalPrice, totalVolumn){
             return null;
         } 
         else {
-            console.log("Hihi");
             return {
                 finalPrice: itemPriceByUnit,
                 finalUnit: itemFinalUnit
