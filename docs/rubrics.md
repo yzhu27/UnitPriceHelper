@@ -25,7 +25,7 @@ Total : 85
 |Use of code coverage |3|Code coverage is 70%. Shown in the badging.<br />[https://github.com/yzhu27/UnitPriceHelper](https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md)|
 |Other automated analysis tools|3|DeepScan<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md|
 |Test cases exist|3|https://github.com/yzhu27/UnitPriceHelper/tree/main/test|
-|Test cases are routinely executed| 3 |https://github.com/yzhu27/UnitPriceHelper/tree/main/test|
+|Test cases are routinely executed| 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/.github/workflows/node.js.yml|
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up|3|https://github.com/yzhu27/UnitPriceHelper/blob/main/CONTRIBUTING.md|
 |Issues are discussed before they are closed|3|https://github.com/yzhu27/UnitPriceHelper/issues|
 |Chat channel: exists|3|**Discord**: https://discord.gg/TMqzrGrc<br />![Discord Screenshot](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/docs/images/screenshot2.png)<br />**Wechat**:![Wechat Screenshot](https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/docs/images/screenshot.png)|
