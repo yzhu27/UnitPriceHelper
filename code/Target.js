@@ -65,6 +65,5 @@ function insert(i){
         console.log(i);
 }
 
-insert(8)
 
 
