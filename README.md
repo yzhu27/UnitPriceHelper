@@ -22,8 +22,16 @@ Online shopping sites give us more choices of products, but to some extent, onli
 
 - Display unit price tags on product description pages.
 <p align="center"><img width="700" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png"></p>
+
 ## Prerequisites
 
+## Supported Websites
+
+<div align=center><a href="https://www.harristeeter.com/"><img src="https://searchlogovector.com/wp-content/uploads/2018/06/harris-teeter-logo-vector.png" width="400" /></a></div>
+
+<div align=center><a href="https://www.costco.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Costco_Wholesale_logo_2010-10-26.svg/512px-Costco_Wholesale_logo_2010-10-26.svg.png" width="400" /></a></div>
+
+More will be supported in the future...
 
 ## Installation
 - Git clone this repository.
