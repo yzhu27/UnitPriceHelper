@@ -41,7 +41,8 @@ More will be supported in the future...
 
 ### Install from GreasyFork
 
-install from [here](https://greasyfork.org/zh-CN/scripts/452600-unitpricehelper)
+- Please make sure you already installed [tampermonkey](http://tampermonkey.net/) or [greasemonkey](http://www.greasespot.net/) to your browser
+- Install Unit Price Helper from [greasyfork](https://greasyfork.org/zh-CN/scripts/452600-unitpricehelper)
 
 ### Manually install
 - Git clone this repository.
