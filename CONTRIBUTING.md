@@ -7,8 +7,8 @@ The following is a set of guidelines to contribute to UnitPriceHelper.
 
 ## How to Contribute
   * [Before Starting](#before-starting)
-  * [Suggesting Enhancements](#)
-  * [Pull Requests](#pull-requests)
+  * [Reporting Bugs](#reporting-bugs)
+  * [Function Enhancement](#function-enhancement)
 ### Before Starting
 - Make sure you fully understand the purpose of this project and know the coding style. You can refer to README.md and the code in extension/content_script.js.
 - When contributing to this repository, please first discuss the change you wish to make via issue with the owners of this repository or email to mwang39@ncsu.edu before making a change.
