@@ -5,6 +5,10 @@ Thank you so much for taking an interest in contributing to our UnitPriceHelper 
 
 The following is a set of guidelines to contribute to UnitPriceHelper.
 
+## Code of Conduct
+
+This project and everyone participating in it is governed by the [UnitPriceHelper Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to any of the original contributors.
+
 ## How to Contribute
   * [Before Starting](#before-starting)
   * [Reporting Bugs](#reporting-bugs)
