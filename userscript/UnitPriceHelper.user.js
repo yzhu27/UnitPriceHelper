@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         UnitPriceHelper
+// @name         Unit Price Helper
 // @namespace    https://github.com/yzhu27/UnitPriceHelper/
 // @version      0.1
 // @description  Automatically generate unit price for applicable items when shopping online.
