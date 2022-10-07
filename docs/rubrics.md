@@ -19,11 +19,11 @@ Total : 85
 |Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|Both the video and readme describe our motivation.<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md<br />videolink[TBD]|
 |Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|3|videolink[TBD]|
 |Use of version control tools|3|Used git, branches.<br />https://github.com/yzhu27/UnitPriceHelper|
-|Use of style checkers |3|https://github.com/yzhu27/UnitPriceHelper/tree/main/.github/workflows|
-|Use of code formatters. | 3 |https://github.com/yzhu27/UnitPriceHelper/tree/main/.github/workflows|
-|Use of syntax checkers. | 3 |https://github.com/yzhu27/UnitPriceHelper/tree/main/.github/workflows|
+|Use of style checkers |3|https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
+|Use of code formatters. | 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
+|Use of syntax checkers. | 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
 |Use of code coverage |3|Code coverage is 70%. Shown in the badging.<br />[https://github.com/yzhu27/UnitPriceHelper](https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md)|
-|Other automated analysis tools|3|DeepScan<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md|
+|Other automated analysis tools|3|DeepScan<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#automated-analysis-tool|
 |Test cases exist|3|https://github.com/yzhu27/UnitPriceHelper/tree/main/test|
 |Test cases are routinely executed| 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/.github/workflows/node.js.yml|
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up|3|https://github.com/yzhu27/UnitPriceHelper/blob/main/CONTRIBUTING.md|
