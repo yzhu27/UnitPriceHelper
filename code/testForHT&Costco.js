@@ -39,8 +39,7 @@ function addPriceTipListener(tag, func, time) {
     if (time) {
         setInterval(eachCallFunc, time);
         
-        //commit test3
-        //test 4
+        //commit test 5
     }
 }
 function addListPriceTipS(){
