@@ -298,8 +298,11 @@ function costcoConverter(price, title) {
     };
 
 }
-// module.exports={
-//     addListPriceTips,
-//     harrisConverter,
-//     costcoConverter
-// };
+
+if (typeof process === "object" && typeof require === "function") {
+    module.exports={
+        addListPriceTips,
+        harrisConverter,
+        costcoConverter
+    };
+}
