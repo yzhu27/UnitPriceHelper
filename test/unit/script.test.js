@@ -13,7 +13,7 @@ const {
 describe('addListPriceTips test for harris teeter', function(){
     beforeEach((done) => {
         //JSDOM.fromFile('./test/unit/index.html')
-        JSDOM.fromFile('./test/unit/HarrisTeeter.html')
+        JSDOM.fromFile('./test/unit/HarrisTeeter.txt')
         //JSDOM.fromURL('https://www.harristeeter.com/search?query=oil')
         .then((dom) => {
           global.document = dom.window.document
