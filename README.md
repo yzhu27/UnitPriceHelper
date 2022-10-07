@@ -3,9 +3,11 @@
 # UnitPriceHelper
 
 ![GitHub Contributor](https://img.shields.io/github/contributors/yzhu27/UnitPriceHelper)
-![GitHub Build](https://img.shields.io/github/workflow/status/yzhu27/UnitPriceHelper/run%20unit%20tests)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7151932.svg)](https://doi.org/10.5281/zenodo.7151932)
+![license](https://img.shields.io/github/license/yzhu27/unitpricehelper)
+![language](https://img.shields.io/github/languages/top/yzhu27/unitpricehelper)
 [![DeepScan grade](https://deepscan.io/api/teams/19191/projects/22531/branches/667106/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=19191&pid=22531&bid=667106)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7151932.svg)](https://doi.org/10.5281/zenodo.7151932)
+![GitHub Build](https://img.shields.io/github/workflow/status/yzhu27/UnitPriceHelper/run%20unit%20tests)
 ## 
 UnitPriceHelper is an Google Chrome extension that allows to display the prices per unit for the products on multiple shopping sites, including Harris Teeter, Costco and Target.
 
