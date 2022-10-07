@@ -36,6 +36,15 @@ Online shopping sites give us more choices of products, but to some extent, onli
 More will be supported in the future...
 
 ## Installation
+
+### Install from Google Chrome Extension Web Store
+
+### Install from GreasyFork
+
+- Please make sure you already installed [tampermonkey](http://tampermonkey.net/) or [greasemonkey](http://www.greasespot.net/) to your browser
+- Install Unit Price Helper from [greasyfork](https://greasyfork.org/zh-CN/scripts/452600-unitpricehelper)
+
+### Manually install
 - Git clone this repository.
 ```
 git clone https://github.com/yzhu27/UnitPriceHelper.git
@@ -75,7 +84,7 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 ## Test and Coverage
 | Statements                  | Branches                | Functions                 | Lines             |
 | --------------------------- | ----------------------- | ------------------------- | ----------------- |
-| ![Statements](https://img.shields.io/badge/statements-84.67%25-yellow.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-68.25%25-red.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-66.66%25-red.svg?style=flat) | ![Lines](https://img.shields.io/badge/lines-83.96%25-yellow.svg?style=flat) |
+| ![Statements](https://img.shields.io/badge/statements-94.89%25-brightgreen.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-81.66%25-yellow.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-88.88%25-yellow.svg?style=flat) | ![Lines](https://img.shields.io/badge/lines-94.81%25-brightgreen.svg?style=flat) |
 ### Unit Test
   
   - [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).

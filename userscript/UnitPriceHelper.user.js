@@ -1,3 +1,28 @@
+// ==UserScript==
+// @name         Unit Price Helper
+// @namespace    https://github.com/yzhu27/UnitPriceHelper/
+// @version      0.1
+// @description  Automatically generate unit price for applicable items when shopping online.
+// @copyright    @yzhu27, @Internationale-NCSU, @Lognam-Huang, @MZWANGgg, @IsleZhu
+// @match        http://www.harristeeter.com/*
+// @include      http://www.harristeeter.com/*
+// @match        https://www.harristeeter.com/*
+// @include      https://www.harristeeter.com/*
+// @match        http://www.costco.com/*
+// @include      http://www.costco.com/*
+// @match        https://www.costco.com/*
+// @include      https://www.costco.com/*
+// @match        http://www.target.com/*
+// @include      http://www.target.com/*
+// @match        https://www.target.com/*
+// @include      https://www.target.com/*
+// @require      https://code.jquery.com/jquery-3.6.1.js
+// @updateURL    https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/userscript/UnitPriceHelper.user.js
+// @downloadURL  https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/userscript/UnitPriceHelper.user.js
+// @grant        none
+// ==/UserScript==
+
+
 const RULE_SET = {
     'https://www.harristeeter.com/p/': {
         price_label: "data",
