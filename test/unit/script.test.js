@@ -23,7 +23,7 @@ describe('addListPriceTips test for harris teeter', function(){
       })
     
     it('distinguish websites', function(){
-        expect(addListPriceTips('https://www.harristeeter.com/search')).to.be.equal(30);
+        expect(addListPriceTips('https://www.harristeeter.com/search')).to.be.not.equal(0);
     });
 
 });
