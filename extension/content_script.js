@@ -224,6 +224,8 @@ function harrisConverter(price, title) {
                 break;
             case 'suit': itemFinalUnit = 'suit';
                 break;
+            case 'suits': itemFinalUnit = 'suit';
+                break;
             //may be some other units else?
 
             default: itemFinalUnit = 'unknown unit';
