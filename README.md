@@ -36,6 +36,14 @@ Online shopping sites give us more choices of products, but to some extent, onli
 More will be supported in the future...
 
 ## Installation
+
+### Install from Google Chrome Extension Web Store
+
+### Install from GreasyFork
+
+install from [here](https://greasyfork.org/zh-CN/scripts/452600-unitpricehelper)
+
+### Manually install
 - Git clone this repository.
 ```
 git clone https://github.com/yzhu27/UnitPriceHelper.git
