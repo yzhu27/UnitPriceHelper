@@ -107,9 +107,9 @@ function addListPriceTips(url_prefix) {
 function addTipsHelper(price, title, func, appendFun, index) {
     var convertedResult = func(price, title);
     if (convertedResult != null) {
+        console.log(convertedResult.finalPrice + '/' + convertedResult.finalUnit);
         appendFun(convertedResult, index);
     }
-    console.log(convertedResult.finalPrice + '/' + convertedResult.finalUnit);
 
 }
 function appendForCostco(convertedResult, index) {
@@ -168,9 +168,9 @@ function appendForTarget(convertedResult, index) {
 }
 function harrisConverter(price, title) {
     //solve if the price/unit is already provided by the website
-
+    var itemFinalUnit = '';
     if (title[0] == '$') {
-        var itemFinalUnit = title;
+        itemFinalUnit = title;
         return {
             finalPrice: itemFinalUnit
         }
@@ -187,7 +187,7 @@ function harrisConverter(price, title) {
         //cut long tails after digit
         itemPriceByUnit = itemPriceByUnit.toFixed(3);
         //console.log(itemPriceByUnit);
-        var itemFinalUnit = '';
+
 
         switch (itemUnit) {
             case 'gal': itemFinalUnit = 'gal';
@@ -251,7 +251,7 @@ function costcoConverter(price, title) {
     var match = null;
     var cap = 0, count = 0, lastMul = 1;
     var un = '', tip = '';
-    var productName = null;
+    //var productName = null;
     reg.lastIndex = 0;
     match = reg.exec(title);
     //console.log(match);
@@ -261,7 +261,7 @@ function costcoConverter(price, title) {
     }
     var capacity;
     var caps = match[pos.pCap].split('-');
-    productName = match[1];
+    //productName = match[1];
     //var count = match[3];
     if (caps.length == 2) {
         capacity = (parseFloat(caps[0].trim()) + parseFloat(caps[1].trim())) / 2;
