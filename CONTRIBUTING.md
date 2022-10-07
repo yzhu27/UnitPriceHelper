@@ -40,8 +40,8 @@ You can close an issue after the development and testing for a feature or task i
 
 ### Pull Request Process
 1. Write corresponding test cases to ensure it is not breaking the existing function. Create pull request and request for the code review. If the request is approved, merge to main-branch.
-2. Update the README.md with details of changes to our extension, this includes new environment variables, exposed ports, useful file locations and container parameters.
-3. Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent.
+2. Update the README.md with details of changes to our extension, this includes new website where you make an adaptation, your test cases and files, exposed ports and useful file locations.
+3. Increase the version numbers in any examples files and the README.md to the new version for your Pull Request.
 
 
 
