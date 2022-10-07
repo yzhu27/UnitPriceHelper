@@ -31,11 +31,15 @@ This section guides you through submitting a bug report.
 ### Function Enhancement
 We hope to apply this extension to more shopping sites. So if you find some websites that adapt our extension, please let us know or complete the adaptation in person! But remember that the unit prices appearing on the website should be consistent with our existing format.
 ### Creating Issues
-#### Assigning an issue
-you can scroll through the issues and find something that you can work on and assign it to yourself.
-#### Closing an Issue
+- Assigning an issue:
+You can scroll through the issues and find something that you can work on and assign it to yourself.
+- Closing an Issue:
 You can close an issue after the development and testing for a feature or task is completed.
 
+### Pull Request Process
+1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+2. Update the README.md with details of changes to the extension, this includes new environment variables, exposed ports, useful file locations and container parameters.
+3. Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is SemVer.
 
 
 
