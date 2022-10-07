@@ -48,7 +48,7 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
   <p float="left">
   <img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_3.png" width="450" /><img src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/install_4.png" width="450" /> 
   </p>
-- Open https://www.harristeeter.com/ or https://www.costco.com/, search your favorite product!
+- Open [Harris Teeter](https://www.harristeeter.com/) or [Costco Wholesale](https://www.costco.com/), search your favorite product!
 
 <br />
   
