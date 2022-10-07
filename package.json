@@ -10,7 +10,7 @@
     "nyc": "^15.1.0"
   },
   "scripts": {
-    "test:unit": "nyc mocha test/unit --timeout 10000",
+    "test:unit": "nyc mocha test/unit",
     "make-badges": "istanbul-badges-readme"
   },
   "nyc": {
