@@ -9,7 +9,12 @@ The following is a set of guidelines to contribute to UnitPriceHelper.
 
 This project and everyone participating in it is governed by the [UnitPriceHelper Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to any of the original contributors.
 
-
+## How to Contribute🙄
+  * [Before Starting](#before-starting🚥)
+  * [Reporting Bugs](#reporting-bugs✋)
+  * [Creating Issues](#creating-issues📢)
+  * [Pull Request Process](#pull-request-process🏁)
+  * [Function Enhancement](#function-enhancement🐱‍🏍)
 
 ### Before Starting🚥
 - Make sure you fully understand the purpose of this project and know the coding style. You can refer to README.md and the code in extension/content_script.js.
