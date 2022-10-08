@@ -5,19 +5,19 @@ Total : 85
 
 |Notes|assessment|evidence|
 |-----|---------|----------|
-|Video1|3|[TBD]|
+|Video1|3|https://youtu.be/dJazeKcEK_A <br />You can find it in readme.|
 |Video2|-| |
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|3| https://github.com/yzhu27/UnitPriceHelper/graphs/contributors|
-|Number of commits|3|We commited [TBD] times in total.<br />https://github.com/yzhu27/UnitPriceHelper/commits|
-|Number of commits: by different people|3|#commit = [TBD] <br />https://github.com/yzhu27/UnitPriceHelper/graphs/contributors|
+|Number of commits|3|#commit = [TBD].<br />https://github.com/yzhu27/UnitPriceHelper/commits|
+|Number of commits: by different people|3|#commit range = [TBD] <br />https://github.com/yzhu27/UnitPriceHelper/graphs/contributors|
 |Issues reports: there are **many**|2|#issue = [TBD] <br />https://github.com/yzhu27/UnitPriceHelper/issues|
 |Issues are being closed|3|All issues have been closed till the due date.<br />https://github.com/yzhu27/UnitPriceHelper/issues|
 |DOI badge: exists|3|[https://github.com/yzhu27/UnitPriceHelper](https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md)|
 |Docs: doco generated, format not ugly |3|[TBD]|
 |Docs: what: point descriptions of each class/function (in isolation) |2|[TBD]|
 |Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|3|In the **Features** section in readme.<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md|
-|Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|Both the video and readme describe our motivation.<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md<br />videolink[TBD]|
-|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|3|videolink[TBD]|
+|Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|Both the video and readme describe our motivation.<br />https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md|
+|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|3|[videolink[TBD]](https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md)|
 |Use of version control tools|3|Used git, branches.<br />https://github.com/yzhu27/UnitPriceHelper|
 |Use of style checkers |3|https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
 |Use of code formatters. | 3 |https://github.com/yzhu27/UnitPriceHelper/blob/main/README.md#style-checker-and-code-fomatter|
