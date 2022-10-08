@@ -13,8 +13,8 @@ Unit Price Helper is an Google Chrome extension that allows to display the price
 
 Online shopping sites give us more choices of products, but to some extent, online shopping also increases the difficulty of selection. Most people tend to buy cheaper products, but which are cheaper? $18.38 for 48 Fl Oz or $27.49 for 101 Fl Oz? It's difficult to calculate each products' unit price manually. UnitPriceHelper is a solution to unit price comparation. It calculates the unit prices of products automatically and attach unit price tags to the product listing pages and product description pages, thus helping customers figure out each item's unit price.
 
-
-[video]
+## Introduction Video
+[<div align=center>![project introduction](https://res.cloudinary.com/marcomontalbano/image/upload/v1665197301/video_to_markdown/images/youtube--dJazeKcEK_A-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/dJazeKcEK_A "project introduction")
 
 ## Features
 - Display unit price tags on listing pages.
@@ -22,6 +22,7 @@ Online shopping sites give us more choices of products, but to some extent, onli
 
 - Display unit price tags on product description pages.
 <p align="center"><img width="700" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png"></p>
+
 
 ## Prerequisites
 
