@@ -24,8 +24,6 @@ Online shopping sites give us more choices of products, but to some extent, onli
 <p align="center"><img width="700" src="https://raw.githubusercontent.com/yzhu27/UnitPriceHelper/main/images/feature_3.png"></p>
 
 
-## Prerequisites
-
 ## Supported Websites
 
 - <a href="https://www.harristeeter.com/"><img src="https://searchlogovector.com/wp-content/uploads/2018/06/harris-teeter-logo-vector.png" width="200" /></a>
@@ -39,6 +37,8 @@ More will be supported in the future...
 ## Installation
 
 ### Install from Google Chrome Extension Web Store
+
+- Under reviewing
 
 ### Install from GreasyFork
 
@@ -72,7 +72,6 @@ git clone https://github.com/yzhu27/UnitPriceHelper.git
 ## Languages
 
 - JavaScript
-- HTML
 
 ## Style Checker and Code Fomatter
 
