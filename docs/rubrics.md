@@ -8,7 +8,7 @@ Total : 85
 |Video1|3|https://youtu.be/dJazeKcEK_A <br />You can find it in readme.|
 |Video2|-| |
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|3| https://github.com/yzhu27/UnitPriceHelper/graphs/contributors|
-|Number of commits|3|#commit = 175+.<br />https://github.com/yzhu27/UnitPriceHelper/commits|
+|Number of commits|3|#commit = 200+.<br />https://github.com/yzhu27/UnitPriceHelper/commits|
 |Number of commits: by different people|3|#commit range = [21,56+] <br />https://github.com/yzhu27/UnitPriceHelper/graphs/contributors|
 |Issues reports: there are **many**|2|#issue = 14+ <br />https://github.com/yzhu27/UnitPriceHelper/issues|
 |Issues are being closed|3|All issues have been closed till the due date.<br />https://github.com/yzhu27/UnitPriceHelper/issues|
