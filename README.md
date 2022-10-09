@@ -36,10 +36,6 @@ More will be supported in the future...
 
 ## Installation
 
-### Install from Google Chrome Extension Web Store
-
-- Under reviewing
-
 ### Install from GreasyFork
 
 - Please make sure you already installed [tampermonkey](http://tampermonkey.net/) or [greasemonkey](http://www.greasespot.net/) to your browser
