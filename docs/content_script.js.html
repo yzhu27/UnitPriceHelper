@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: content_script.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: content_script.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Set up tasks on different pages
+ * @type {{string: object}}
+ */
+const RULE_SET = {
+    'https://www.harristeeter.com/p/': {
+        price_label: "data",
+        capacity_label: "span[id=ProductDetails-sellBy-unit]",
+        function: harrisConverter,
+        label_type: 'value',
+        append_function: appendForHarris,
+        website_type: 'static'
+    },
+    'https://www.harristeeter.com/pl/': {
+        price_label: "data",
+        capacity_label: "span[class='kds-Text--s text-neutral-more-prominent']",
+        function: harrisConverter,
+        label_type: 'value',
+        append_function: appendForHarris,
+        website_type: 'static'
+    },
+    'https://www.harristeeter.com/search': {
+        price_label: "data",
+        capacity_label: "span[class='kds-Text--s text-neutral-more-prominent']",
+        function: harrisConverter,
+        label_type: 'value',
+        append_function: appendForHarris,
+        website_type: 'static'
+    },
+    'https://www.costco.com/': {
+        price_label: 'div[class=price]',
+        capacity_label: 'span[class=description]',
+        function: costcoConverter,
+        label_type: 'text',
+        append_function: appendForCostco,
+        website_type: 'static'
+    },
+    'https://www.target.com/s': {
+        price_label: "span[data-test=current-price]",
+        capacity_label: "div[class='Truncate-sc-10p6c43-0 dWgRjr']",
+        function: costcoConverter, // target could share the converter with costco.
+        label_type: 'text',
+        append_function: appendForTarget,
+        website_type: 'dynamic'
+    },
+    'https://www.wholefoodsmarket.com/search': {
+        price_label: "span[class=regular_price]",
+        capacity_label: "h2[data-testid=product-tile-name]",
+        //function: targetConverter,
+        label_type: 'text',
+        append_function: appendForTarget,
+        website_type: 'dynamic'
+    }
+};
+/**
+ * Supported websites list
+ * @type {string[]}
+ */
+const TARGET_URL_PREFIX = [
+    'https://www.harristeeter.com/p/',
+    'https://www.harristeeter.com/search',
+    'https://www.costco.com/',
+    'https://www.target.com/s',
+    'https://www.wholefoodsmarket.com/search',
+    'https://www.harristeeter.com/pl/'
+];
+/**
+ * Regular expressions to grab product information in web source
+ * @type {object&lt;string>}
+ */
+const REGEX = {
+    unit : 'gal|g|kg|lbs|lb|fl oz|oz|qt|fl. oz|ml|litter|Litter|l|L',
+    quant : 'ct|pack|count',
+    float : "\\d+\\.?\\d*?(?:\\s*-\\s*\\d+\\.?\\d*?)?"
+};
+(function () {
+    var host = window.location.host.toLowerCase();
+    window.priceTipEnabled = true;
+    console.log(host)
+    var url = window.location.href.toLowerCase();
+    for (let i = 0; i &lt; TARGET_URL_PREFIX.length; i++) {
+        if (url.startsWith(TARGET_URL_PREFIX[i])) {
+            if (RULE_SET[TARGET_URL_PREFIX[i]].website_type == 'static') {
+                addListPriceTips(TARGET_URL_PREFIX[i])
+            } else if (RULE_SET[TARGET_URL_PREFIX[i]].website_type == 'dynamic') {
+                window.addEventListener("wheel", event => {
+                    addListPriceTips(TARGET_URL_PREFIX[i])
+                })
+            }
+        }
+    }
+})();
+/**
+ * @property {Function}addListPriceTips Acts like an controller. Designated different converter 
+ *                                      and append function for 'addTipsHelper()' according to 'url_prefix' 
+ * @param {string} url_prefix the unique identifier prefix of target url.
+ * @returns no return value
+ */
+function addListPriceTips(url_prefix) {
+    
+    console.log('addListPriceTips_ is called:' + url_prefix);
+    // query didn't work for 'Target' website
+    //console.log(document);
+    var totalPrice = document.querySelectorAll(RULE_SET[url_prefix].price_label);
+    var totalVolumn = document.querySelectorAll(RULE_SET[url_prefix].capacity_label);
+    //console.log(RULE_SET[url_prefix].price_label);
+    //console.log('len: '+totalPrice.length);
+    //console.log('price: ' + totalPrice[0].textContent);
+    //console.log('volume: ', totalVolumn[0].textContent);
+
+    var labelType = RULE_SET[url_prefix].label_type;
+    var len = totalPrice.length;
+
+    for (let i = 0; i &lt; len; i++) {
+        if (totalPrice[i] === null || totalVolumn[i] === null) {
+            continue;
+        }
+        if (labelType === 'value') {
+            addTipsHelper(totalPrice[i].value, totalVolumn[i].textContent, RULE_SET[url_prefix].function, RULE_SET[url_prefix].append_function, i);
+        } else if (labelType === 'text') {
+            addTipsHelper(totalPrice[i].textContent, totalVolumn[i].textContent, RULE_SET[url_prefix].function, RULE_SET[url_prefix].append_function, i);
+        }
+    }
+    console.log(len);
+    return len;
+}
+/**
+ * @property {Function}addTipsHelper Acts like an executor. Finished the unit calculating and converting according to the given params.
+ * @param {string} price the raw price value extracted from labels
+ * @param {string} title the raw title value extracted from labels. Volumn is matched using regex from title.
+ * @returns no return value
+ */
+function addTipsHelper(price, title, func, appendFun, index) {
+    var convertedResult = func(price, title);
+    if (convertedResult != null) {
+        console.log(convertedResult.finalPrice + '/' + convertedResult.finalUnit);
+        appendFun(convertedResult, index);
+    }
+
+}
+
+/**
+ * @property {Function}appendForCostco Attach unit price tag to costco pages
+ * @param {object} convertedResult Calculated unit price
+ * @param {number} index current index of iterated product
+ * @returns no return value
+ */
+function appendForCostco(convertedResult, index) {
+    console.log('unit price:' + convertedResult.finalPrice, 'unit: ' + convertedResult.finalUnit);
+    var priceSpan = "[" + convertedResult.finalPrice + " / " + convertedResult.finalUnit + "]";
+    document.getElementsByClassName('price')[index].append(priceSpan);
+}
+
+/**
+ * @property {Function}appendForHarris Attach unit price tag to Harristeeter pages
+ * @param {object} convertedResult Calculated unit price
+ * @param {number} index current index of iterated product
+ * @returns no return value
+ */
+function appendForHarris(convertedResult, index) {
+    var priceSpan = document.createElement('span');
+    priceSpan.innerHTML = "[" + convertedResult.finalPrice + " / " + convertedResult.finalUnit + "]";
+    priceSpan.className = 'kds-Price-promotional-dropCaps';
+    //left border/margin fails to work
+    priceSpan.style = "font-size: 16px; left-margin: 20px";
+
+    //following line is originally working
+    //document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[index].appendChild(priceSpan);
+
+    //following is trying to solve discount item issue, still require testing
+    //use the length of testResult to check whether the price/unit is already provided by the website
+    //if it is provided, the length should be 1 - only has finalPrice as the result
+    //otherwise, the length is 2 - finalPrice and finalUnit
+    if (Object.keys(convertedResult).length == 2) {
+        priceSpan.innerHTML = "[$" + convertedResult.finalPrice + " / " + convertedResult.finalUnit + "]";
+
+        priceSpan.className = 'kds-Price-promotional-dropCaps';
+        //left border/margin fails to work
+        priceSpan.style = "font-size: 16px; left-margin: 20px";
+
+        //not elegant, but works
+        //use the length of class name to determine whether the item is having discount
+        //if the item is having discount, the length should be 54
+        //if the item is not having discount, the length should be 83
+        var insertedTag = document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--decorated')[index];
+        if (insertedTag.className.length == 54) {
+            insertedTag.appendChild(priceSpan);
+        } else if (insertedTag.className.length == 83) {
+            insertedTag.appendChild(priceSpan);
+        } else {
+            alert("ERROR: not tag to insert span");
+        }
+
+
+        //try to change CSS, this need to use append(), but failed because is regarded as string
+        // var priceSpan = "&lt;span class=\"kds-Price-promotional-dropCaps\">"+testResult.finalPrice+" / "+testResult.finalUnit+"&lt;/span>";
+        // document.getElementsByClassName('kds-Price-promotional kds-Price-promotional--plain kds-Price-promotional--decorated')[0].append(priceSpan);
+
+    } else {
+        console.log("Price/unit is already provided.")
+    }
+}
+
+/**
+ * @property {Function}appendForTarget Attach unit price tag to Target pages
+ * @param {object} convertedResult Calculated unit price
+ * @param {number} index current index of iterated product
+ * @returns no return value
+ */
+function appendForTarget(convertedResult, index) {
+    var priceSpan = "[" + convertedResult.finalPrice + " / " + convertedResult.finalUnit + "]";
+    if (!document.querySelectorAll('span[data-test=current-price]')[index].textContent.endsWith('.')) {
+        document.querySelectorAll('span[data-test=current-price]')[index].append(priceSpan + '.');
+    }
+}
+/**
+ * @property {Function}harrisConverter Calculate unit price using product's price and amout on harristeeter pages
+ * @param {string} price product raw price
+ * @param {string} title product name
+ * @returns {{string:number, string:string} | null} If valid. return the calculated unit price
+ */
+function harrisConverter(price, title) {
+    //solve if the price/unit is already provided by the website
+    var itemFinalUnit = '';
+    if (title[0] == '$') {
+        itemFinalUnit = title;
+        return {
+            finalPrice: itemFinalUnit
+        }
+    } else {
+        //quantity cannot solve 1/2 yet
+        //quantity can already solve 0.5 by yZhu
+        var itemQuantity = title.match(/([1-9]\d*\.?\d*)|(0\.\d*[1-9])/)[0];
+        //console.log(itemQuantity);
+
+        //optimize to solve special cases as '20 ct 0.85'
+        var itemUnit = title.match(/\s((([a-zA-Z]*\s?[a-zA-Z]+)*))/)[1];
+        //console.log(itemUnit);
+        var itemPriceByUnit = parseFloat(price) / parseFloat(itemQuantity);
+        //cut long tails after digit
+        itemPriceByUnit = itemPriceByUnit.toFixed(3);
+        //console.log(itemPriceByUnit);
+
+
+        switch (itemUnit) {
+            case 'gal': itemFinalUnit = 'gal';
+                break;
+            case 'oz': itemFinalUnit = 'oz';
+                break;
+            case 'fl oz': itemFinalUnit = 'oz';
+                break;
+            case 'ct': itemFinalUnit = 'count';
+                break;
+            case 'lb': itemFinalUnit = 'lb';
+                break;
+            case 'pack': itemFinalUnit = 'pack';
+                break;
+            case 'pk': itemFinalUnit = 'pack';
+                break;
+            case 'bottles': itemFinalUnit = 'Bottle';
+                break;
+            case 'cans': itemFinalUnit = 'can';
+                break;
+            case 'L': itemFinalUnit = 'L';
+                break;
+            case 'l': itemFinalUnit = 'L';
+                break;
+            case 'ml': itemFinalUnit = 'ml';
+                break;
+            case 'unit': itemFinalUnit = 'unit';
+                break;
+            case 'box': itemFinalUnit = 'box';
+                break;
+            case 'boxes': itemFinalUnit = 'box';
+                break;
+            case 'suit': itemFinalUnit = 'suit';
+                break;
+            case 'suits': itemFinalUnit = 'suit';
+                break;
+            case 'bag': itemFinalUnit = 'bag';
+                break;
+            case 'bags': itemFinalUnit = 'bag';
+                break;
+            //may be some other units else?
+
+            default: itemFinalUnit = 'unknown unit';
+        }
+
+        if (itemPriceByUnit > 1000 || itemPriceByUnit &lt; 0) {
+            return null;
+        }
+        else {
+            //console.log("Hihi");
+            return {
+                finalPrice: itemPriceByUnit,
+                finalUnit: itemFinalUnit
+            };
+        }
+    }
+}
+/**
+* @property {Function}costcoConverter Calculate unit price using product's price and amout on costco pages
+* @param {string} price product raw price
+* @param {string} title product name
+* @returns {{string:number, string:string} | null} If valid. return the calculated unit price
+*/
+function costcoConverter(price, title) {
+    title = title.trim().toLowerCase();
+    console.log('title: ' + title);
+    price = parseFloat(price.trim().substring(1));
+    var regQuant = REGEX.quant;
+    var regUnit = REGEX.unit;
+    var regFloat = REGEX.float;
+    var unitMatcher = new RegExp('(' + regFloat + ')-?\\s*?' + '('+ regUnit + ')');
+    var quantMatcher = new RegExp('(' + regFloat + ')-?\\s*?' + '('+ regQuant + ')');
+    var matchQuant = null;
+    var matchUnit = null;
+    matchQuant = quantMatcher.exec(title);
+    matchUnit = unitMatcher.exec(title);
+    var unit = ' ';
+    var count = 'count';
+    var quant = 1;
+    var capacity = 1;
+    if(matchQuant!=null){
+        console.log(matchQuant[0]);
+        count = matchQuant[2];
+        quant = parseFloat(matchQuant[1]);
+    }
+    if(matchUnit!=null){
+        console.log(matchUnit[0]);
+        unit = matchUnit[2];
+        capacity = parseFloat(matchUnit[1]);
+    }
+    var unitPrice = parseFloat(price) / (capacity*quant);
+    if(unit === ' ' ){
+        unit = count;
+    }
+    return {
+        finalUnit: unit,
+        finalPrice: Math.round(unitPrice * 100) / 100,
+    };
+
+}
+
+if (typeof process === "object" &amp;&amp; typeof require === "function") {
+    module.exports={
+        addListPriceTips,
+        harrisConverter,
+        costcoConverter,
+        appendForHarris,
+        appendForCostco,
+        appendForTarget
+    };
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addListPriceTips">addListPriceTips</a></li><li><a href="global.html#addTipsHelper">addTipsHelper</a></li><li><a href="global.html#appendForCostco">appendForCostco</a></li><li><a href="global.html#appendForHarris">appendForHarris</a></li><li><a href="global.html#appendForTarget">appendForTarget</a></li><li><a href="global.html#costcoConverter">costcoConverter</a></li><li><a href="global.html#harrisConverter">harrisConverter</a></li><li><a href="global.html#REGEX">REGEX</a></li><li><a href="global.html#RULE_SET">RULE_SET</a></li><li><a href="global.html#TARGET_URL_PREFIX">TARGET_URL_PREFIX</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Oct 09 2022 19:22:45 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
