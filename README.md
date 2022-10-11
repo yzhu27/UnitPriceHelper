@@ -36,6 +36,10 @@ More will be supported in the future...
 
 ## Installation
 
+### Install from Google Web Store
+
+- Install from [here](https://chrome.google.com/webstore/detail/unit-price-helper/edclfclmeehfhbdkoliopgbjgfifnoln)
+
 ### Install from GreasyFork
 
 - Please make sure you already installed [tampermonkey](http://tampermonkey.net/) or [greasemonkey](http://www.greasespot.net/) to your browser
